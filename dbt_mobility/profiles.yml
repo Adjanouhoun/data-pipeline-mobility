@@ -1,0 +1,12 @@
+dbt_mobility:
+  outputs:
+    prod:
+      type: postgres
+      host: postgres_destination
+      port: 5432
+      user: data_engineer
+      password: password123
+      dbname: mobility_warehouse
+      schema: schema_analytics
+      threads: 4
+  target: prod

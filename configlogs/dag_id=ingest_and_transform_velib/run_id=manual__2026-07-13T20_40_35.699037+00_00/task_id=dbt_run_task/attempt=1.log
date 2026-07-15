@@ -1,0 +1,292 @@
+[2026-07-13T20:40:37.686+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-07-13T20:40:37.712+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingest_and_transform_velib.dbt_run_task manual__2026-07-13T20:40:35.699037+00:00 [queued]>
+[2026-07-13T20:40:37.718+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingest_and_transform_velib.dbt_run_task manual__2026-07-13T20:40:35.699037+00:00 [queued]>
+[2026-07-13T20:40:37.719+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-07-13T20:40:37.729+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run_task> on 2026-07-13 20:40:35.699037+00:00
+[2026-07-13T20:40:37.732+0000] {standard_task_runner.py:63} INFO - Started process 416 to run task
+[2026-07-13T20:40:37.734+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ingest_and_transform_velib', 'dbt_run_task', 'manual__2026-07-13T20:40:35.699037+00:00', '--job-id', '32', '--raw', '--subdir', 'DAGS_FOLDER/ingest_velib_status.py', '--cfg-path', '/tmp/tmp4s_c4xmh']
+[2026-07-13T20:40:37.735+0000] {standard_task_runner.py:91} INFO - Job 32: Subtask dbt_run_task
+[2026-07-13T20:40:37.783+0000] {task_command.py:426} INFO - Running <TaskInstance: ingest_and_transform_velib.dbt_run_task manual__2026-07-13T20:40:35.699037+00:00 [running]> on host 17cabc20fcf6
+[2026-07-13T20:40:37.864+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Amadou' AIRFLOW_CTX_DAG_ID='ingest_and_transform_velib' AIRFLOW_CTX_TASK_ID='dbt_run_task' AIRFLOW_CTX_EXECUTION_DATE='2026-07-13T20:40:35.699037+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-07-13T20:40:35.699037+00:00'
+[2026-07-13T20:40:37.864+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-07-13T20:40:37.871+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-07-13T20:40:37.872+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        python -m pip install --upgrade pip\n        python -m pip install dbt-postgres==1.9.1\n        cd /opt/***/dbt_mobility\n        dbt run --profiles-dir .\n        ']
+[2026-07-13T20:40:37.878+0000] {subprocess.py:86} INFO - Output:
+[2026-07-13T20:40:38.221+0000] {subprocess.py:93} INFO - Requirement already satisfied: pip in /home/***/.local/lib/python3.11/site-packages (24.0)
+[2026-07-13T20:40:38.318+0000] {subprocess.py:93} INFO - Collecting pip
+[2026-07-13T20:40:38.400+0000] {subprocess.py:93} INFO -   Downloading pip-26.1.2-py3-none-any.whl.metadata (4.6 kB)
+[2026-07-13T20:40:38.423+0000] {subprocess.py:93} INFO - Downloading pip-26.1.2-py3-none-any.whl (1.8 MB)
+[2026-07-13T20:40:38.503+0000] {subprocess.py:93} INFO -    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 24.2 MB/s eta 0:00:00
+[2026-07-13T20:40:39.781+0000] {subprocess.py:93} INFO - Installing collected packages: pip
+[2026-07-13T20:40:39.782+0000] {subprocess.py:93} INFO -   Attempting uninstall: pip
+[2026-07-13T20:40:39.845+0000] {subprocess.py:93} INFO -     Found existing installation: pip 24.0
+[2026-07-13T20:40:39.872+0000] {subprocess.py:93} INFO -     Uninstalling pip-24.0:
+[2026-07-13T20:40:39.983+0000] {subprocess.py:93} INFO -       Successfully uninstalled pip-24.0
+[2026-07-13T20:40:40.648+0000] {subprocess.py:93} INFO - Successfully installed pip-26.1.2
+[2026-07-13T20:40:41.215+0000] {subprocess.py:93} INFO - Collecting dbt-postgres==1.9.1
+[2026-07-13T20:40:41.305+0000] {subprocess.py:93} INFO -   Downloading dbt_postgres-1.9.1-py3-none-any.whl.metadata (3.8 kB)
+[2026-07-13T20:40:41.333+0000] {subprocess.py:93} INFO - Collecting agate<2.0,>=1.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.353+0000] {subprocess.py:93} INFO -   Downloading agate-1.14.2-py3-none-any.whl.metadata (3.1 kB)
+[2026-07-13T20:40:41.479+0000] {subprocess.py:93} INFO - Collecting dbt-adapters<2.0,>=1.7.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.494+0000] {subprocess.py:93} INFO -   Downloading dbt_adapters-1.24.4-py3-none-any.whl.metadata (4.6 kB)
+[2026-07-13T20:40:41.522+0000] {subprocess.py:93} INFO - Collecting dbt-common<2.0,>=1.0.4 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.535+0000] {subprocess.py:93} INFO -   Downloading dbt_common-1.38.0-py3-none-any.whl.metadata (5.0 kB)
+[2026-07-13T20:40:41.587+0000] {subprocess.py:93} INFO - Collecting dbt-core>=1.8.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.602+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.12-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:41.606+0000] {subprocess.py:93} INFO - Requirement already satisfied: psycopg2-binary<3.0,>=2.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-postgres==1.9.1) (2.9.9)
+[2026-07-13T20:40:41.606+0000] {subprocess.py:93} INFO - Requirement already satisfied: Babel>=2.0 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (2.14.0)
+[2026-07-13T20:40:41.607+0000] {subprocess.py:93} INFO - Requirement already satisfied: isodate>=0.5.4 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (0.6.1)
+[2026-07-13T20:40:41.624+0000] {subprocess.py:93} INFO - Collecting leather>=0.3.2 (from agate<2.0,>=1.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.639+0000] {subprocess.py:93} INFO -   Downloading leather-0.4.1-py3-none-any.whl.metadata (3.0 kB)
+[2026-07-13T20:40:41.664+0000] {subprocess.py:93} INFO - Collecting parsedatetime!=2.5,>=2.1 (from agate<2.0,>=1.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.680+0000] {subprocess.py:93} INFO -   Downloading parsedatetime-2.6-py3-none-any.whl.metadata (4.7 kB)
+[2026-07-13T20:40:41.684+0000] {subprocess.py:93} INFO - Requirement already satisfied: python-slugify>=1.2.1 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (8.0.4)
+[2026-07-13T20:40:41.703+0000] {subprocess.py:93} INFO - Collecting pytimeparse>=1.1.5 (from agate<2.0,>=1.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.720+0000] {subprocess.py:93} INFO -   Downloading pytimeparse-1.1.8-py2.py3-none-any.whl.metadata (3.4 kB)
+[2026-07-13T20:40:41.748+0000] {subprocess.py:93} INFO - Collecting dbt-protos<2.0,>=1.0.291 (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.762+0000] {subprocess.py:93} INFO -   Downloading dbt_protos-1.0.541-py3-none-any.whl.metadata (859 bytes)
+[2026-07-13T20:40:41.789+0000] {subprocess.py:93} INFO - Collecting mashumaro<3.18,>=3.9 (from mashumaro[msgpack]<3.18,>=3.9->dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.806+0000] {subprocess.py:93} INFO -   Downloading mashumaro-3.17-py3-none-any.whl.metadata (118 kB)
+[2026-07-13T20:40:41.945+0000] {subprocess.py:93} INFO - Collecting protobuf<7.0,>=6.0 (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.959+0000] {subprocess.py:93} INFO -   Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_aarch64.whl.metadata (593 bytes)
+[2026-07-13T20:40:41.964+0000] {subprocess.py:93} INFO - Requirement already satisfied: pytz>=2015.7 in /home/***/.local/lib/python3.11/site-packages (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (2024.1)
+[2026-07-13T20:40:41.964+0000] {subprocess.py:93} INFO - Requirement already satisfied: typing-extensions<5.0,>=4.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (4.11.0)
+[2026-07-13T20:40:41.965+0000] {subprocess.py:93} INFO - Collecting agate<2.0,>=1.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:41.985+0000] {subprocess.py:93} INFO -   Downloading agate-1.9.1-py2.py3-none-any.whl.metadata (3.2 kB)
+[2026-07-13T20:40:41.989+0000] {subprocess.py:93} INFO - Requirement already satisfied: colorama<0.5,>=0.3.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.4.6)
+[2026-07-13T20:40:42.015+0000] {subprocess.py:93} INFO - Collecting deepdiff<9.0,>=7.0 (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.031+0000] {subprocess.py:93} INFO -   Downloading deepdiff-8.6.2-py3-none-any.whl.metadata (8.8 kB)
+[2026-07-13T20:40:42.036+0000] {subprocess.py:93} INFO - Requirement already satisfied: jinja2<4,>=3.1.3 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (3.1.3)
+[2026-07-13T20:40:42.036+0000] {subprocess.py:93} INFO - Requirement already satisfied: jsonschema<5.0,>=4.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (4.22.0)
+[2026-07-13T20:40:42.037+0000] {subprocess.py:93} INFO - Requirement already satisfied: pathspec<1.1,>=0.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.12.1)
+[2026-07-13T20:40:42.038+0000] {subprocess.py:93} INFO - Requirement already satisfied: python-dateutil<3.0,>=2.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.9.0.post0)
+[2026-07-13T20:40:42.038+0000] {subprocess.py:93} INFO - Requirement already satisfied: requests<3.0.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.31.0)
+[2026-07-13T20:40:42.062+0000] {subprocess.py:93} INFO - Collecting orderly-set<6,>=5.4.1 (from deepdiff<9.0,>=7.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.077+0000] {subprocess.py:93} INFO -   Downloading orderly_set-5.5.0-py3-none-any.whl.metadata (6.6 kB)
+[2026-07-13T20:40:42.081+0000] {subprocess.py:93} INFO - Requirement already satisfied: six in /home/***/.local/lib/python3.11/site-packages (from isodate>=0.5.4->agate<2.0,>=1.0->dbt-postgres==1.9.1) (1.16.0)
+[2026-07-13T20:40:42.082+0000] {subprocess.py:93} INFO - Requirement already satisfied: MarkupSafe>=2.0 in /home/***/.local/lib/python3.11/site-packages (from jinja2<4,>=3.1.3->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.1.5)
+[2026-07-13T20:40:42.083+0000] {subprocess.py:93} INFO - Requirement already satisfied: attrs>=22.2.0 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (23.2.0)
+[2026-07-13T20:40:42.083+0000] {subprocess.py:93} INFO - Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2023.12.1)
+[2026-07-13T20:40:42.083+0000] {subprocess.py:93} INFO - Requirement already satisfied: referencing>=0.28.4 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.31.1)
+[2026-07-13T20:40:42.083+0000] {subprocess.py:93} INFO - Requirement already satisfied: rpds-py>=0.7.1 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.18.0)
+[2026-07-13T20:40:42.106+0000] {subprocess.py:93} INFO - Collecting typing-extensions<5.0,>=4.0 (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.120+0000] {subprocess.py:93} INFO -   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+[2026-07-13T20:40:42.183+0000] {subprocess.py:93} INFO - Collecting msgpack>=0.5.6 (from mashumaro[msgpack]<3.18,>=3.9->dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.198+0000] {subprocess.py:93} INFO -   Downloading msgpack-1.2.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (8.3 kB)
+[2026-07-13T20:40:42.206+0000] {subprocess.py:93} INFO - Requirement already satisfied: charset-normalizer<4,>=2 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (3.3.2)
+[2026-07-13T20:40:42.206+0000] {subprocess.py:93} INFO - Requirement already satisfied: idna<4,>=2.5 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (3.7)
+[2026-07-13T20:40:42.206+0000] {subprocess.py:93} INFO - Requirement already satisfied: urllib3<3,>=1.21.1 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.2.1)
+[2026-07-13T20:40:42.207+0000] {subprocess.py:93} INFO - Requirement already satisfied: certifi>=2017.4.17 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2024.2.2)
+[2026-07-13T20:40:42.233+0000] {subprocess.py:93} INFO - Collecting click<9.0,>=8.3.0 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.245+0000] {subprocess.py:93} INFO -   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+[2026-07-13T20:40:42.266+0000] {subprocess.py:93} INFO - Collecting daff>=1.3.46 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.281+0000] {subprocess.py:93} INFO -   Downloading daff-1.4.2-py3-none-any.whl.metadata (10 kB)
+[2026-07-13T20:40:42.312+0000] {subprocess.py:93} INFO - Collecting dbt-extractor<=0.6,>=0.5.0 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.327+0000] {subprocess.py:93} INFO -   Downloading dbt_extractor-0.6.0-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.6 kB)
+[2026-07-13T20:40:42.355+0000] {subprocess.py:93} INFO - Collecting dbt-semantic-interfaces<0.10,>=0.9.0 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.368+0000] {subprocess.py:93} INFO -   Downloading dbt_semantic_interfaces-0.9.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-07-13T20:40:42.372+0000] {subprocess.py:93} INFO - INFO: pip is looking at multiple versions of dbt-core to determine which version is compatible with other requirements. This could take a while.
+[2026-07-13T20:40:42.373+0000] {subprocess.py:93} INFO - Collecting dbt-core>=1.8.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.388+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.11-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.408+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.10-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.414+0000] {subprocess.py:93} INFO - Collecting dbt-adapters<2.0,>=1.7.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.428+0000] {subprocess.py:93} INFO -   Downloading dbt_adapters-1.23.0-py3-none-any.whl.metadata (4.6 kB)
+[2026-07-13T20:40:42.432+0000] {subprocess.py:93} INFO - Collecting dbt-core>=1.8.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:42.447+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.9-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.467+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.8-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.488+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.7-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.511+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.6-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.531+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.5-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.535+0000] {subprocess.py:93} INFO - INFO: pip is still looking at multiple versions of dbt-core to determine which version is compatible with other requirements. This could take a while.
+[2026-07-13T20:40:42.551+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.4-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.571+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.3-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.591+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.11.2-py3-none-any.whl.metadata (4.4 kB)
+[2026-07-13T20:40:42.611+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.22-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.630+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.21-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.633+0000] {subprocess.py:93} INFO - INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+[2026-07-13T20:40:42.650+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.20-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.670+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.19-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.692+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.18-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.713+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.17-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.734+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.16-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.754+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.15-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.774+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.13-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.794+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.11-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.813+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.10-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.833+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.9-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.850+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.8-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.870+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.7-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.887+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.6-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.909+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.5-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.928+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.4-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.946+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.3-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.965+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.2-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:42.982+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.1-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:43.004+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.10.0-py3-none-any.whl.metadata (4.2 kB)
+[2026-07-13T20:40:43.028+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.10-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.049+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.9-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.067+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.8-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.087+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.7-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.108+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.6-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.128+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.5-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.147+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.4-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.166+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.3-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.187+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.2-py3-none-any.whl.metadata (4.0 kB)
+[2026-07-13T20:40:43.207+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.1-py3-none-any.whl.metadata (3.8 kB)
+[2026-07-13T20:40:43.227+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.9.0-py3-none-any.whl.metadata (3.8 kB)
+[2026-07-13T20:40:43.247+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.9-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:43.373+0000] {subprocess.py:93} INFO - Collecting logbook<1.6,>=1.5 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:43.389+0000] {subprocess.py:93} INFO -   Downloading Logbook-1.5.3.tar.gz (85 kB)
+[2026-07-13T20:40:43.403+0000] {subprocess.py:93} INFO -   Installing build dependencies: started
+[2026-07-13T20:40:44.208+0000] {subprocess.py:93} INFO -   Installing build dependencies: finished with status 'done'
+[2026-07-13T20:40:44.209+0000] {subprocess.py:93} INFO -   Getting requirements to build wheel: started
+[2026-07-13T20:40:44.439+0000] {subprocess.py:93} INFO -   Getting requirements to build wheel: finished with status 'done'
+[2026-07-13T20:40:44.439+0000] {subprocess.py:93} INFO -   Preparing metadata (pyproject.toml): started
+[2026-07-13T20:40:44.559+0000] {subprocess.py:93} INFO -   Preparing metadata (pyproject.toml): finished with status 'done'
+[2026-07-13T20:40:44.561+0000] {subprocess.py:93} INFO - Requirement already satisfied: click<9.0,>=8.0.2 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (8.1.7)
+[2026-07-13T20:40:44.593+0000] {subprocess.py:93} INFO - Collecting networkx<4.0,>=2.3 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.608+0000] {subprocess.py:93} INFO -   Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+[2026-07-13T20:40:44.616+0000] {subprocess.py:93} INFO - Collecting dbt-core>=1.8.0 (from dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.631+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.8-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.651+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.7-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.671+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.6-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.690+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.5-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.708+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.4-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.746+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.3-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.766+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.2-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.784+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.1-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.802+0000] {subprocess.py:93} INFO -   Downloading dbt_core-1.8.0-py3-none-any.whl.metadata (3.9 kB)
+[2026-07-13T20:40:44.806+0000] {subprocess.py:93} INFO - Collecting mashumaro[msgpack]<3.18,>=3.9 (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.821+0000] {subprocess.py:93} INFO -   Downloading mashumaro-3.16-py3-none-any.whl.metadata (118 kB)
+[2026-07-13T20:40:44.833+0000] {subprocess.py:93} INFO - Collecting mashumaro<3.18,>=3.9 (from mashumaro[msgpack]<3.18,>=3.9->dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.849+0000] {subprocess.py:93} INFO -   Downloading mashumaro-3.14-py3-none-any.whl.metadata (114 kB)
+[2026-07-13T20:40:44.860+0000] {subprocess.py:93} INFO - Requirement already satisfied: packaging>20.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (24.0)
+[2026-07-13T20:40:44.860+0000] {subprocess.py:93} INFO - Requirement already satisfied: pydantic<3 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (2.7.1)
+[2026-07-13T20:40:44.861+0000] {subprocess.py:93} INFO - Requirement already satisfied: pyyaml>=6.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (6.0.1)
+[2026-07-13T20:40:44.880+0000] {subprocess.py:93} INFO - Collecting snowplow-tracker<2.0,>=1.0.2 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.895+0000] {subprocess.py:93} INFO -   Downloading snowplow_tracker-1.1.0-py3-none-any.whl.metadata (5.7 kB)
+[2026-07-13T20:40:44.917+0000] {subprocess.py:93} INFO - Collecting sqlparse<0.6.0,>=0.5.5 (from dbt-core>=1.8.0->dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.933+0000] {subprocess.py:93} INFO -   Downloading sqlparse-0.5.5-py3-none-any.whl.metadata (4.7 kB)
+[2026-07-13T20:40:44.940+0000] {subprocess.py:93} INFO - Requirement already satisfied: importlib-metadata<9,>=6.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-semantic-interfaces<0.10,>=0.9.0->dbt-core>=1.8.0->dbt-postgres==1.9.1) (6.11.0)
+[2026-07-13T20:40:44.959+0000] {subprocess.py:93} INFO - Collecting jinja2<4,>=3.1.3 (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1)
+[2026-07-13T20:40:44.973+0000] {subprocess.py:93} INFO -   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[2026-07-13T20:40:44.976+0000] {subprocess.py:93} INFO - Requirement already satisfied: more-itertools<11.0,>=8.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-semantic-interfaces<0.10,>=0.9.0->dbt-core>=1.8.0->dbt-postgres==1.9.1) (10.2.0)
+[2026-07-13T20:40:44.977+0000] {subprocess.py:93} INFO - Requirement already satisfied: zipp>=0.5 in /home/***/.local/lib/python3.11/site-packages (from importlib-metadata<9,>=6.0->dbt-semantic-interfaces<0.10,>=0.9.0->dbt-core>=1.8.0->dbt-postgres==1.9.1) (3.18.1)
+[2026-07-13T20:40:44.981+0000] {subprocess.py:93} INFO - Requirement already satisfied: annotated-types>=0.4.0 in /home/***/.local/lib/python3.11/site-packages (from pydantic<3->dbt-core>=1.8.0->dbt-postgres==1.9.1) (0.6.0)
+[2026-07-13T20:40:44.982+0000] {subprocess.py:93} INFO - Requirement already satisfied: pydantic-core==2.18.2 in /home/***/.local/lib/python3.11/site-packages (from pydantic<3->dbt-core>=1.8.0->dbt-postgres==1.9.1) (2.18.2)
+[2026-07-13T20:40:44.992+0000] {subprocess.py:93} INFO - Requirement already satisfied: text-unidecode>=1.3 in /home/***/.local/lib/python3.11/site-packages (from python-slugify>=1.2.1->agate<2.0,>=1.0->dbt-postgres==1.9.1) (1.3)
+[2026-07-13T20:40:45.012+0000] {subprocess.py:93} INFO - Downloading dbt_postgres-1.9.1-py3-none-any.whl (35 kB)
+[2026-07-13T20:40:45.030+0000] {subprocess.py:93} INFO - Downloading dbt_adapters-1.24.4-py3-none-any.whl (176 kB)
+[2026-07-13T20:40:45.050+0000] {subprocess.py:93} INFO - Downloading dbt_common-1.38.0-py3-none-any.whl (88 kB)
+[2026-07-13T20:40:45.067+0000] {subprocess.py:93} INFO - Downloading agate-1.9.1-py2.py3-none-any.whl (95 kB)
+[2026-07-13T20:40:45.087+0000] {subprocess.py:93} INFO - Downloading dbt_protos-1.0.541-py3-none-any.whl (241 kB)
+[2026-07-13T20:40:45.108+0000] {subprocess.py:93} INFO - Downloading deepdiff-8.6.2-py3-none-any.whl (91 kB)
+[2026-07-13T20:40:45.126+0000] {subprocess.py:93} INFO - Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_aarch64.whl (324 kB)
+[2026-07-13T20:40:45.150+0000] {subprocess.py:93} INFO - Downloading dbt_core-1.11.12-py3-none-any.whl (1.1 MB)
+[2026-07-13T20:40:45.174+0000] {subprocess.py:93} INFO -    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 39.9 MB/s  0:00:00
+[2026-07-13T20:40:45.190+0000] {subprocess.py:93} INFO - Downloading mashumaro-3.14-py3-none-any.whl (92 kB)
+[2026-07-13T20:40:45.207+0000] {subprocess.py:93} INFO - Downloading click-8.4.2-py3-none-any.whl (119 kB)
+[2026-07-13T20:40:45.228+0000] {subprocess.py:93} INFO - Downloading dbt_extractor-0.6.0-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (435 kB)
+[2026-07-13T20:40:45.246+0000] {subprocess.py:93} INFO - Downloading dbt_semantic_interfaces-0.9.0-py3-none-any.whl (147 kB)
+[2026-07-13T20:40:45.265+0000] {subprocess.py:93} INFO - Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[2026-07-13T20:40:45.283+0000] {subprocess.py:93} INFO - Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+[2026-07-13T20:40:45.317+0000] {subprocess.py:93} INFO -    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 59.5 MB/s  0:00:00
+[2026-07-13T20:40:45.331+0000] {subprocess.py:93} INFO - Downloading orderly_set-5.5.0-py3-none-any.whl (13 kB)
+[2026-07-13T20:40:45.346+0000] {subprocess.py:93} INFO - Downloading snowplow_tracker-1.1.0-py3-none-any.whl (44 kB)
+[2026-07-13T20:40:45.365+0000] {subprocess.py:93} INFO - Downloading sqlparse-0.5.5-py3-none-any.whl (46 kB)
+[2026-07-13T20:40:45.382+0000] {subprocess.py:93} INFO - Downloading daff-1.4.2-py3-none-any.whl (144 kB)
+[2026-07-13T20:40:45.401+0000] {subprocess.py:93} INFO - Downloading leather-0.4.1-py3-none-any.whl (30 kB)
+[2026-07-13T20:40:45.420+0000] {subprocess.py:93} INFO - Downloading msgpack-1.2.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (414 kB)
+[2026-07-13T20:40:45.438+0000] {subprocess.py:93} INFO - Downloading parsedatetime-2.6-py3-none-any.whl (42 kB)
+[2026-07-13T20:40:45.457+0000] {subprocess.py:93} INFO - Downloading pytimeparse-1.1.8-py2.py3-none-any.whl (10.0 kB)
+[2026-07-13T20:40:45.651+0000] {subprocess.py:93} INFO - Installing collected packages: pytimeparse, parsedatetime, leather, daff, sqlparse, protobuf, orderly-set, networkx, msgpack, mashumaro, jinja2, dbt-extractor, click, snowplow-tracker, deepdiff, dbt-protos, agate, dbt-semantic-interfaces, dbt-common, dbt-adapters, dbt-core, dbt-postgres
+[2026-07-13T20:40:45.851+0000] {subprocess.py:93} INFO -   Attempting uninstall: sqlparse
+[2026-07-13T20:40:45.855+0000] {subprocess.py:93} INFO -     Found existing installation: sqlparse 0.5.0
+[2026-07-13T20:40:45.857+0000] {subprocess.py:93} INFO -     Uninstalling sqlparse-0.5.0:
+[2026-07-13T20:40:45.865+0000] {subprocess.py:93} INFO -       Successfully uninstalled sqlparse-0.5.0
+[2026-07-13T20:40:45.888+0000] {subprocess.py:93} INFO -   Attempting uninstall: protobuf
+[2026-07-13T20:40:45.891+0000] {subprocess.py:93} INFO -     Found existing installation: protobuf 4.25.3
+[2026-07-13T20:40:45.894+0000] {subprocess.py:93} INFO -     Uninstalling protobuf-4.25.3:
+[2026-07-13T20:40:45.906+0000] {subprocess.py:93} INFO -       Successfully uninstalled protobuf-4.25.3
+[2026-07-13T20:40:46.823+0000] {subprocess.py:93} INFO -   Attempting uninstall: jinja2
+[2026-07-13T20:40:46.826+0000] {subprocess.py:93} INFO -     Found existing installation: Jinja2 3.1.3
+[2026-07-13T20:40:46.828+0000] {subprocess.py:93} INFO -     Uninstalling Jinja2-3.1.3:
+[2026-07-13T20:40:46.833+0000] {subprocess.py:93} INFO -       Successfully uninstalled Jinja2-3.1.3
+[2026-07-13T20:40:46.900+0000] {subprocess.py:93} INFO -   Attempting uninstall: click
+[2026-07-13T20:40:46.904+0000] {subprocess.py:93} INFO -     Found existing installation: click 8.1.7
+[2026-07-13T20:40:46.906+0000] {subprocess.py:93} INFO -     Uninstalling click-8.1.7:
+[2026-07-13T20:40:46.910+0000] {subprocess.py:93} INFO -       Successfully uninstalled click-8.1.7
+[2026-07-13T20:40:47.520+0000] {subprocess.py:93} INFO - 
+[2026-07-13T20:40:47.521+0000] {subprocess.py:93} INFO - ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+[2026-07-13T20:40:47.521+0000] {subprocess.py:93} INFO - google-cloud-audit-log 0.2.5 requires protobuf!=3.20.0,!=3.20.1,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.522+0000] {subprocess.py:93} INFO - google-cloud-vision 3.7.2 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.522+0000] {subprocess.py:93} INFO - google-cloud-dataproc-metastore 1.15.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.522+0000] {subprocess.py:93} INFO - google-cloud-spanner 3.46.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.522+0000] {subprocess.py:93} INFO - google-cloud-dlp 3.16.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.522+0000] {subprocess.py:93} INFO - google-cloud-resource-manager 1.12.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.523+0000] {subprocess.py:93} INFO - google-cloud-speech 2.26.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.523+0000] {subprocess.py:93} INFO - google-cloud-compute 1.18.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.523+0000] {subprocess.py:93} INFO - google-cloud-workflows 1.14.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.523+0000] {subprocess.py:93} INFO - google-cloud-texttospeech 2.16.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.523+0000] {subprocess.py:93} INFO - google-cloud-language 2.13.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.523+0000] {subprocess.py:93} INFO - google-cloud-redis 2.15.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.524+0000] {subprocess.py:93} INFO - google-cloud-appengine-logging 1.4.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.524+0000] {subprocess.py:93} INFO - google-cloud-bigtable 2.23.1 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.524+0000] {subprocess.py:93} INFO - google-cloud-videointelligence 2.13.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.524+0000] {subprocess.py:93} INFO - google-cloud-secret-manager 2.20.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.524+0000] {subprocess.py:93} INFO - google-cloud-monitoring 2.21.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.524+0000] {subprocess.py:93} INFO - google-cloud-build 3.24.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.525+0000] {subprocess.py:93} INFO - google-cloud-os-login 2.14.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.525+0000] {subprocess.py:93} INFO - google-cloud-aiplatform 1.49.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.525+0000] {subprocess.py:93} INFO - google-cloud-dataform 0.5.9 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.525+0000] {subprocess.py:93} INFO - google-cloud-memcache 1.9.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.525+0000] {subprocess.py:93} INFO - opentelemetry-proto 1.24.0 requires protobuf<5.0,>=3.19, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.525+0000] {subprocess.py:93} INFO - google-api-core 2.19.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0.dev0,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.526+0000] {subprocess.py:93} INFO - google-cloud-batch 0.17.18 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.526+0000] {subprocess.py:93} INFO - google-cloud-automl 2.13.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.526+0000] {subprocess.py:93} INFO - google-cloud-kms 2.21.4 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.526+0000] {subprocess.py:93} INFO - google-cloud-datacatalog 3.19.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.526+0000] {subprocess.py:93} INFO - google-analytics-admin 0.22.7 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.526+0000] {subprocess.py:93} INFO - google-cloud-container 2.45.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.527+0000] {subprocess.py:93} INFO - google-cloud-run 0.10.5 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.527+0000] {subprocess.py:93} INFO - google-cloud-dataproc 5.9.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.527+0000] {subprocess.py:93} INFO - google-cloud-pubsub 2.21.1 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.527+0000] {subprocess.py:93} INFO - google-ads 24.0.0 requires protobuf<5.0.0,>=4.25.0, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.527+0000] {subprocess.py:93} INFO - proto-plus 1.23.0 requires protobuf<5.0.0dev,>=3.19.0, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.527+0000] {subprocess.py:93} INFO - google-cloud-logging 3.10.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.528+0000] {subprocess.py:93} INFO - googleapis-common-protos 1.63.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0.dev0,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.528+0000] {subprocess.py:93} INFO - google-cloud-translate 3.15.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.528+0000] {subprocess.py:93} INFO - google-cloud-orchestration-*** 1.12.1 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.528+0000] {subprocess.py:93} INFO - google-cloud-dataflow-client 0.8.10 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.528+0000] {subprocess.py:93} INFO - grpc-google-iam-v1 0.13.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.528+0000] {subprocess.py:93} INFO - google-cloud-bigquery-datatransfer 3.15.2 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.529+0000] {subprocess.py:93} INFO - google-cloud-storage-transfer 1.11.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.529+0000] {subprocess.py:93} INFO - google-cloud-tasks 2.16.3 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.529+0000] {subprocess.py:93} INFO - google-cloud-dataplex 1.13.0 requires protobuf!=3.20.0,!=3.20.1,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<5.0.0dev,>=3.19.5, but you have protobuf 6.33.6 which is incompatible.
+[2026-07-13T20:40:47.529+0000] {subprocess.py:93} INFO - Successfully installed agate-1.9.1 click-8.4.2 daff-1.4.2 dbt-adapters-1.24.4 dbt-common-1.38.0 dbt-core-1.11.12 dbt-extractor-0.6.0 dbt-postgres-1.9.1 dbt-protos-1.0.541 dbt-semantic-interfaces-0.9.0 deepdiff-8.6.2 jinja2-3.1.6 leather-0.4.1 mashumaro-3.14 msgpack-1.2.1 networkx-3.6.1 orderly-set-5.5.0 parsedatetime-2.6 protobuf-6.33.6 pytimeparse-1.1.8 snowplow-tracker-1.1.0 sqlparse-0.5.5
+[2026-07-13T20:40:48.687+0000] {subprocess.py:93} INFO - [0m20:40:48  Running with dbt=1.11.12
+[2026-07-13T20:40:48.848+0000] {subprocess.py:93} INFO - [0m20:40:48  Registered adapter: postgres=1.9.1
+[2026-07-13T20:40:48.949+0000] {subprocess.py:93} INFO - [0m20:40:48  Unable to do partial parsing because of a version mismatch
+[2026-07-13T20:40:49.618+0000] {subprocess.py:93} INFO - [0m20:40:49  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+[2026-07-13T20:40:49.619+0000] {subprocess.py:93} INFO - There are 1 unused configuration paths:
+[2026-07-13T20:40:49.619+0000] {subprocess.py:93} INFO - - models.dbt_mobility.example
+[2026-07-13T20:40:49.692+0000] {subprocess.py:93} INFO - [0m20:40:49  Found 2 models, 1 source, 474 macros
+[2026-07-13T20:40:49.694+0000] {subprocess.py:93} INFO - [0m20:40:49
+[2026-07-13T20:40:49.694+0000] {subprocess.py:93} INFO - [0m20:40:49  Concurrency: 4 threads (target='prod')
+[2026-07-13T20:40:49.695+0000] {subprocess.py:93} INFO - [0m20:40:49
+[2026-07-13T20:40:49.789+0000] {subprocess.py:93} INFO - [0m20:40:49  1 of 2 START sql view model schema_analytics.stg_velib_stations ................ [RUN]
+[2026-07-13T20:40:49.878+0000] {subprocess.py:93} INFO - [0m20:40:49  1 of 2 OK created sql view model schema_analytics.stg_velib_stations ........... [[32mCREATE VIEW[0m in 0.09s]
+[2026-07-13T20:40:49.879+0000] {subprocess.py:93} INFO - [0m20:40:49  2 of 2 START sql table model schema_analytics.fct_velib_status ................. [RUN]
+[2026-07-13T20:40:49.942+0000] {subprocess.py:93} INFO - [0m20:40:49  2 of 2 OK created sql table model schema_analytics.fct_velib_status ............ [[32mSELECT 195[0m in 0.06s]
+[2026-07-13T20:40:49.954+0000] {subprocess.py:93} INFO - [0m20:40:49
+[2026-07-13T20:40:49.954+0000] {subprocess.py:93} INFO - [0m20:40:49  Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.26 seconds (0.26s).
+[2026-07-13T20:40:50.035+0000] {subprocess.py:93} INFO - [0m20:40:50
+[2026-07-13T20:40:50.035+0000] {subprocess.py:93} INFO - [0m20:40:50  [32mCompleted successfully[0m
+[2026-07-13T20:40:50.036+0000] {subprocess.py:93} INFO - [0m20:40:50
+[2026-07-13T20:40:50.036+0000] {subprocess.py:93} INFO - [0m20:40:50  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+[2026-07-13T20:40:50.749+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-07-13T20:40:50.750+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-07-13T20:40:50.875+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ingest_and_transform_velib, task_id=dbt_run_task, run_id=manual__2026-07-13T20:40:35.699037+00:00, execution_date=20260713T204035, start_date=20260713T204037, end_date=20260713T204050
+[2026-07-13T20:40:50.917+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-07-13T20:40:50.933+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-07-13T20:40:50.934+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

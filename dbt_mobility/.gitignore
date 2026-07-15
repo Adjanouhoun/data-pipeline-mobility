@@ -1,0 +1,22 @@
+# Environnement et secrets
+.env
+*.env
+.env.*
+secrets/
+*.pem
+*.key
+
+# Docker & Bases de données
+.db/
+postgres_data/
+superset_home/
+*.db
+*.sqlite
+
+# Python & dbt
+__pycache__/
+*.pyc
+dbt_packages/
+target/
+logs/
+*.log

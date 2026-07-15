@@ -1,0 +1,123 @@
+[2026-07-13T23:00:01.371+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-07-13T23:00:01.393+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingest_and_transform_velib.dbt_run_task scheduled__2026-07-13T22:00:00+00:00 [queued]>
+[2026-07-13T23:00:01.398+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingest_and_transform_velib.dbt_run_task scheduled__2026-07-13T22:00:00+00:00 [queued]>
+[2026-07-13T23:00:01.398+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-07-13T23:00:01.405+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run_task> on 2026-07-13 22:00:00+00:00
+[2026-07-13T23:00:01.408+0000] {standard_task_runner.py:63} INFO - Started process 1563 to run task
+[2026-07-13T23:00:01.410+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ingest_and_transform_velib', 'dbt_run_task', 'scheduled__2026-07-13T22:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/ingest_velib_status.py', '--cfg-path', '/tmp/tmpksawyvdb']
+[2026-07-13T23:00:01.412+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask dbt_run_task
+[2026-07-13T23:00:01.450+0000] {task_command.py:426} INFO - Running <TaskInstance: ingest_and_transform_velib.dbt_run_task scheduled__2026-07-13T22:00:00+00:00 [running]> on host 6ced2ff4682b
+[2026-07-13T23:00:01.519+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Amadou' AIRFLOW_CTX_DAG_ID='ingest_and_transform_velib' AIRFLOW_CTX_TASK_ID='dbt_run_task' AIRFLOW_CTX_EXECUTION_DATE='2026-07-13T22:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-07-13T22:00:00+00:00'
+[2026-07-13T23:00:01.520+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-07-13T23:00:01.617+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-07-13T23:00:01.618+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        python -m pip install dbt-postgres==1.9.1\n        cd /opt/***/dbt_mobility\n        dbt run --profiles-dir .\n        dbt test --profiles-dir .\n        ']
+[2026-07-13T23:00:01.625+0000] {subprocess.py:86} INFO - Output:
+[2026-07-13T23:00:02.009+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-postgres==1.9.1 in /home/***/.local/lib/python3.11/site-packages (1.9.1)
+[2026-07-13T23:00:02.011+0000] {subprocess.py:93} INFO - Requirement already satisfied: agate<2.0,>=1.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-postgres==1.9.1) (1.9.1)
+[2026-07-13T23:00:02.012+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-adapters<2.0,>=1.7.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-postgres==1.9.1) (1.24.4)
+[2026-07-13T23:00:02.013+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-common<2.0,>=1.0.4 in /home/***/.local/lib/python3.11/site-packages (from dbt-postgres==1.9.1) (1.38.0)
+[2026-07-13T23:00:02.013+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-core>=1.8.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-postgres==1.9.1) (1.11.12)
+[2026-07-13T23:00:02.014+0000] {subprocess.py:93} INFO - Requirement already satisfied: psycopg2-binary<3.0,>=2.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-postgres==1.9.1) (2.9.9)
+[2026-07-13T23:00:02.020+0000] {subprocess.py:93} INFO - Requirement already satisfied: Babel>=2.0 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (2.14.0)
+[2026-07-13T23:00:02.021+0000] {subprocess.py:93} INFO - Requirement already satisfied: isodate>=0.5.4 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (0.6.1)
+[2026-07-13T23:00:02.021+0000] {subprocess.py:93} INFO - Requirement already satisfied: leather>=0.3.2 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (0.4.1)
+[2026-07-13T23:00:02.022+0000] {subprocess.py:93} INFO - Requirement already satisfied: parsedatetime!=2.5,>=2.1 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (2.6)
+[2026-07-13T23:00:02.022+0000] {subprocess.py:93} INFO - Requirement already satisfied: python-slugify>=1.2.1 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (8.0.4)
+[2026-07-13T23:00:02.023+0000] {subprocess.py:93} INFO - Requirement already satisfied: pytimeparse>=1.1.5 in /home/***/.local/lib/python3.11/site-packages (from agate<2.0,>=1.0->dbt-postgres==1.9.1) (1.1.8)
+[2026-07-13T23:00:02.027+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-protos<2.0,>=1.0.291 in /home/***/.local/lib/python3.11/site-packages (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (1.0.541)
+[2026-07-13T23:00:02.031+0000] {subprocess.py:93} INFO - Requirement already satisfied: mashumaro<3.18,>=3.9 in /home/***/.local/lib/python3.11/site-packages (from mashumaro[msgpack]<3.18,>=3.9->dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (3.14)
+[2026-07-13T23:00:02.033+0000] {subprocess.py:93} INFO - Requirement already satisfied: protobuf<7.0,>=6.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (6.33.6)
+[2026-07-13T23:00:02.034+0000] {subprocess.py:93} INFO - Requirement already satisfied: pytz>=2015.7 in /home/***/.local/lib/python3.11/site-packages (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (2024.1)
+[2026-07-13T23:00:02.035+0000] {subprocess.py:93} INFO - Requirement already satisfied: typing-extensions<5.0,>=4.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (4.11.0)
+[2026-07-13T23:00:02.048+0000] {subprocess.py:93} INFO - Requirement already satisfied: colorama<0.5,>=0.3.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.4.6)
+[2026-07-13T23:00:02.049+0000] {subprocess.py:93} INFO - Requirement already satisfied: deepdiff<9.0,>=7.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (8.6.2)
+[2026-07-13T23:00:02.050+0000] {subprocess.py:93} INFO - Requirement already satisfied: jinja2<4,>=3.1.3 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (3.1.6)
+[2026-07-13T23:00:02.050+0000] {subprocess.py:93} INFO - Requirement already satisfied: jsonschema<5.0,>=4.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (4.22.0)
+[2026-07-13T23:00:02.054+0000] {subprocess.py:93} INFO - Requirement already satisfied: pathspec<1.1,>=0.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.12.1)
+[2026-07-13T23:00:02.055+0000] {subprocess.py:93} INFO - Requirement already satisfied: python-dateutil<3.0,>=2.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.9.0.post0)
+[2026-07-13T23:00:02.056+0000] {subprocess.py:93} INFO - Requirement already satisfied: requests<3.0.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.31.0)
+[2026-07-13T23:00:02.064+0000] {subprocess.py:93} INFO - Requirement already satisfied: click<9.0,>=8.3.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (8.4.2)
+[2026-07-13T23:00:02.065+0000] {subprocess.py:93} INFO - Requirement already satisfied: daff>=1.3.46 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (1.4.2)
+[2026-07-13T23:00:02.066+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-extractor<=0.6,>=0.5.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (0.6.0)
+[2026-07-13T23:00:02.067+0000] {subprocess.py:93} INFO - Requirement already satisfied: dbt-semantic-interfaces<0.10,>=0.9.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (0.9.0)
+[2026-07-13T23:00:02.071+0000] {subprocess.py:93} INFO - Requirement already satisfied: networkx<4.0,>=2.3 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (3.6.1)
+[2026-07-13T23:00:02.072+0000] {subprocess.py:93} INFO - Requirement already satisfied: packaging>20.9 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (24.0)
+[2026-07-13T23:00:02.075+0000] {subprocess.py:93} INFO - Requirement already satisfied: pydantic<3 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (2.7.1)
+[2026-07-13T23:00:02.075+0000] {subprocess.py:93} INFO - Requirement already satisfied: pyyaml>=6.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (6.0.1)
+[2026-07-13T23:00:02.076+0000] {subprocess.py:93} INFO - Requirement already satisfied: snowplow-tracker<2.0,>=1.0.2 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (1.1.0)
+[2026-07-13T23:00:02.077+0000] {subprocess.py:93} INFO - Requirement already satisfied: sqlparse<0.6.0,>=0.5.5 in /home/***/.local/lib/python3.11/site-packages (from dbt-core>=1.8.0->dbt-postgres==1.9.1) (0.5.5)
+[2026-07-13T23:00:02.091+0000] {subprocess.py:93} INFO - Requirement already satisfied: importlib-metadata<9,>=6.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-semantic-interfaces<0.10,>=0.9.0->dbt-core>=1.8.0->dbt-postgres==1.9.1) (6.11.0)
+[2026-07-13T23:00:02.092+0000] {subprocess.py:93} INFO - Requirement already satisfied: more-itertools<11.0,>=8.0 in /home/***/.local/lib/python3.11/site-packages (from dbt-semantic-interfaces<0.10,>=0.9.0->dbt-core>=1.8.0->dbt-postgres==1.9.1) (10.2.0)
+[2026-07-13T23:00:02.106+0000] {subprocess.py:93} INFO - Requirement already satisfied: orderly-set<6,>=5.4.1 in /home/***/.local/lib/python3.11/site-packages (from deepdiff<9.0,>=7.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (5.5.0)
+[2026-07-13T23:00:02.108+0000] {subprocess.py:93} INFO - Requirement already satisfied: six in /home/***/.local/lib/python3.11/site-packages (from isodate>=0.5.4->agate<2.0,>=1.0->dbt-postgres==1.9.1) (1.16.0)
+[2026-07-13T23:00:02.110+0000] {subprocess.py:93} INFO - Requirement already satisfied: MarkupSafe>=2.0 in /home/***/.local/lib/python3.11/site-packages (from jinja2<4,>=3.1.3->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.1.5)
+[2026-07-13T23:00:02.119+0000] {subprocess.py:93} INFO - Requirement already satisfied: attrs>=22.2.0 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (23.2.0)
+[2026-07-13T23:00:02.120+0000] {subprocess.py:93} INFO - Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2023.12.1)
+[2026-07-13T23:00:02.120+0000] {subprocess.py:93} INFO - Requirement already satisfied: referencing>=0.28.4 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.31.1)
+[2026-07-13T23:00:02.121+0000] {subprocess.py:93} INFO - Requirement already satisfied: rpds-py>=0.7.1 in /home/***/.local/lib/python3.11/site-packages (from jsonschema<5.0,>=4.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (0.18.0)
+[2026-07-13T23:00:02.136+0000] {subprocess.py:93} INFO - Requirement already satisfied: msgpack>=0.5.6 in /home/***/.local/lib/python3.11/site-packages (from mashumaro[msgpack]<3.18,>=3.9->dbt-adapters<2.0,>=1.7.0->dbt-postgres==1.9.1) (1.2.1)
+[2026-07-13T23:00:02.162+0000] {subprocess.py:93} INFO - Requirement already satisfied: annotated-types>=0.4.0 in /home/***/.local/lib/python3.11/site-packages (from pydantic<3->dbt-core>=1.8.0->dbt-postgres==1.9.1) (0.6.0)
+[2026-07-13T23:00:02.163+0000] {subprocess.py:93} INFO - Requirement already satisfied: pydantic-core==2.18.2 in /home/***/.local/lib/python3.11/site-packages (from pydantic<3->dbt-core>=1.8.0->dbt-postgres==1.9.1) (2.18.2)
+[2026-07-13T23:00:02.173+0000] {subprocess.py:93} INFO - Requirement already satisfied: text-unidecode>=1.3 in /home/***/.local/lib/python3.11/site-packages (from python-slugify>=1.2.1->agate<2.0,>=1.0->dbt-postgres==1.9.1) (1.3)
+[2026-07-13T23:00:02.185+0000] {subprocess.py:93} INFO - Requirement already satisfied: charset-normalizer<4,>=2 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (3.3.2)
+[2026-07-13T23:00:02.186+0000] {subprocess.py:93} INFO - Requirement already satisfied: idna<4,>=2.5 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (3.7)
+[2026-07-13T23:00:02.187+0000] {subprocess.py:93} INFO - Requirement already satisfied: urllib3<3,>=1.21.1 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2.2.1)
+[2026-07-13T23:00:02.187+0000] {subprocess.py:93} INFO - Requirement already satisfied: certifi>=2017.4.17 in /home/***/.local/lib/python3.11/site-packages (from requests<3.0.0->dbt-common<2.0,>=1.0.4->dbt-postgres==1.9.1) (2024.2.2)
+[2026-07-13T23:00:02.231+0000] {subprocess.py:93} INFO - Requirement already satisfied: zipp>=0.5 in /home/***/.local/lib/python3.11/site-packages (from importlib-metadata<9,>=6.0->dbt-semantic-interfaces<0.10,>=0.9.0->dbt-core>=1.8.0->dbt-postgres==1.9.1) (3.18.1)
+[2026-07-13T23:00:03.532+0000] {subprocess.py:93} INFO - 
+[2026-07-13T23:00:03.532+0000] {subprocess.py:93} INFO - [notice] A new release of pip is available: 24.0 -> 26.1.2
+[2026-07-13T23:00:03.532+0000] {subprocess.py:93} INFO - [notice] To update, run: pip3 install --upgrade pip
+[2026-07-13T23:00:04.532+0000] {subprocess.py:93} INFO - [0m23:00:04  Running with dbt=1.11.12
+[2026-07-13T23:00:04.687+0000] {subprocess.py:93} INFO - [0m23:00:04  Registered adapter: postgres=1.9.1
+[2026-07-13T23:00:04.827+0000] {subprocess.py:93} INFO - [0m23:00:04  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+[2026-07-13T23:00:04.831+0000] {subprocess.py:93} INFO - There are 1 unused configuration paths:
+[2026-07-13T23:00:04.831+0000] {subprocess.py:93} INFO - - models.dbt_mobility.example
+[2026-07-13T23:00:04.977+0000] {subprocess.py:93} INFO - [0m23:00:04  Found 2 models, 7 data tests, 1 source, 474 macros
+[2026-07-13T23:00:04.978+0000] {subprocess.py:93} INFO - [0m23:00:04
+[2026-07-13T23:00:04.979+0000] {subprocess.py:93} INFO - [0m23:00:04  Concurrency: 4 threads (target='prod')
+[2026-07-13T23:00:04.979+0000] {subprocess.py:93} INFO - [0m23:00:04
+[2026-07-13T23:00:05.053+0000] {subprocess.py:93} INFO - [0m23:00:05  1 of 2 START sql view model schema_analytics.stg_velib_stations ................ [RUN]
+[2026-07-13T23:00:05.131+0000] {subprocess.py:93} INFO - [0m23:00:05  1 of 2 OK created sql view model schema_analytics.stg_velib_stations ........... [[32mCREATE VIEW[0m in 0.07s]
+[2026-07-13T23:00:05.132+0000] {subprocess.py:93} INFO - [0m23:00:05  2 of 2 START sql table model schema_analytics.fct_velib_status ................. [RUN]
+[2026-07-13T23:00:05.189+0000] {subprocess.py:93} INFO - [0m23:00:05  2 of 2 OK created sql table model schema_analytics.fct_velib_status ............ [[32mSELECT 139[0m in 0.06s]
+[2026-07-13T23:00:05.198+0000] {subprocess.py:93} INFO - [0m23:00:05
+[2026-07-13T23:00:05.199+0000] {subprocess.py:93} INFO - [0m23:00:05  Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.22 seconds (0.22s).
+[2026-07-13T23:00:05.231+0000] {subprocess.py:93} INFO - [0m23:00:05
+[2026-07-13T23:00:05.231+0000] {subprocess.py:93} INFO - [0m23:00:05  [32mCompleted successfully[0m
+[2026-07-13T23:00:05.232+0000] {subprocess.py:93} INFO - [0m23:00:05
+[2026-07-13T23:00:05.232+0000] {subprocess.py:93} INFO - [0m23:00:05  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+[2026-07-13T23:00:06.869+0000] {subprocess.py:93} INFO - [0m23:00:06  Running with dbt=1.11.12
+[2026-07-13T23:00:07.016+0000] {subprocess.py:93} INFO - [0m23:00:07  Registered adapter: postgres=1.9.1
+[2026-07-13T23:00:07.148+0000] {subprocess.py:93} INFO - [0m23:00:07  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+[2026-07-13T23:00:07.150+0000] {subprocess.py:93} INFO - There are 1 unused configuration paths:
+[2026-07-13T23:00:07.152+0000] {subprocess.py:93} INFO - - models.dbt_mobility.example
+[2026-07-13T23:00:07.301+0000] {subprocess.py:93} INFO - [0m23:00:07  Found 2 models, 7 data tests, 1 source, 474 macros
+[2026-07-13T23:00:07.304+0000] {subprocess.py:93} INFO - [0m23:00:07
+[2026-07-13T23:00:07.304+0000] {subprocess.py:93} INFO - [0m23:00:07  Concurrency: 4 threads (target='prod')
+[2026-07-13T23:00:07.304+0000] {subprocess.py:93} INFO - [0m23:00:07
+[2026-07-13T23:00:07.368+0000] {subprocess.py:93} INFO - [0m23:00:07  1 of 7 START test accepted_values_fct_velib_status_station_status__Normal__Presque_pleine__Presque_vide__Vide__Hors_service  [RUN]
+[2026-07-13T23:00:07.368+0000] {subprocess.py:93} INFO - [0m23:00:07  2 of 7 START test assert_bikes_available_under_total_capacity .................. [RUN]
+[2026-07-13T23:00:07.369+0000] {subprocess.py:93} INFO - [0m23:00:07  3 of 7 START test not_null_fct_velib_status_station_id ......................... [RUN]
+[2026-07-13T23:00:07.369+0000] {subprocess.py:93} INFO - [0m23:00:07  4 of 7 START test not_null_fct_velib_status_station_name ....................... [RUN]
+[2026-07-13T23:00:07.439+0000] {subprocess.py:93} INFO - [0m23:00:07  1 of 7 PASS accepted_values_fct_velib_status_station_status__Normal__Presque_pleine__Presque_vide__Vide__Hors_service  [[32mPASS[0m in 0.07s]
+[2026-07-13T23:00:07.445+0000] {subprocess.py:93} INFO - [0m23:00:07  5 of 7 START test not_null_fct_velib_status_station_status ..................... [RUN]
+[2026-07-13T23:00:07.446+0000] {subprocess.py:93} INFO - [0m23:00:07  4 of 7 PASS not_null_fct_velib_status_station_name ............................. [[32mPASS[0m in 0.07s]
+[2026-07-13T23:00:07.447+0000] {subprocess.py:93} INFO - [0m23:00:07  3 of 7 PASS not_null_fct_velib_status_station_id ............................... [[32mPASS[0m in 0.08s]
+[2026-07-13T23:00:07.448+0000] {subprocess.py:93} INFO - [0m23:00:07  2 of 7 PASS assert_bikes_available_under_total_capacity ........................ [[32mPASS[0m in 0.08s]
+[2026-07-13T23:00:07.451+0000] {subprocess.py:93} INFO - [0m23:00:07  6 of 7 START test not_null_fct_velib_status_total_capacity ..................... [RUN]
+[2026-07-13T23:00:07.455+0000] {subprocess.py:93} INFO - [0m23:00:07  7 of 7 START test unique_fct_velib_status_station_id ........................... [RUN]
+[2026-07-13T23:00:07.490+0000] {subprocess.py:93} INFO - [0m23:00:07  5 of 7 PASS not_null_fct_velib_status_station_status ........................... [[32mPASS[0m in 0.04s]
+[2026-07-13T23:00:07.492+0000] {subprocess.py:93} INFO - [0m23:00:07  7 of 7 PASS unique_fct_velib_status_station_id ................................. [[32mPASS[0m in 0.04s]
+[2026-07-13T23:00:07.493+0000] {subprocess.py:93} INFO - [0m23:00:07  6 of 7 PASS not_null_fct_velib_status_total_capacity ........................... [[32mPASS[0m in 0.04s]
+[2026-07-13T23:00:07.504+0000] {subprocess.py:93} INFO - [0m23:00:07
+[2026-07-13T23:00:07.505+0000] {subprocess.py:93} INFO - [0m23:00:07  Finished running 7 data tests in 0 hours 0 minutes and 0.20 seconds (0.20s).
+[2026-07-13T23:00:07.543+0000] {subprocess.py:93} INFO - [0m23:00:07
+[2026-07-13T23:00:07.543+0000] {subprocess.py:93} INFO - [0m23:00:07  [32mCompleted successfully[0m
+[2026-07-13T23:00:07.543+0000] {subprocess.py:93} INFO - [0m23:00:07
+[2026-07-13T23:00:07.544+0000] {subprocess.py:93} INFO - [0m23:00:07  Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[2026-07-13T23:00:08.154+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-07-13T23:00:08.155+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-07-13T23:00:08.177+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ingest_and_transform_velib, task_id=dbt_run_task, run_id=scheduled__2026-07-13T22:00:00+00:00, execution_date=20260713T220000, start_date=20260713T230001, end_date=20260713T230008
+[2026-07-13T23:00:08.224+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-07-13T23:00:08.236+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-07-13T23:00:08.237+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
