@@ -111,6 +111,7 @@ services:
       - SUPERSET_SECRET_KEY=votre_cle_secrete_super_securisee_123456
       - SQLALCHEMY_DATABASE_URI=postgresql://superset:superset_password@postgres_superset:5432/superset
       - MAPBOX_API_KEY=${MAPBOX_API_KEY}
+      - SUPERSET_HOME_PATH=/dashboard/list/
     volumes:
       - superset_home:/app/superset_home
     depends_on:
