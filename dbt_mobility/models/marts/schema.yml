@@ -2,12 +2,22 @@ version: 2
 
 models:
   - name: fct_velib_status
-    description: "Table de faits contenant le statut en temps réel et le taux d'occupation des stations Vélib."
+    description: >-
+      Table de faits historisée contenant une ligne par station
+      et par horodatage métier Vélib.
+
     columns:
-      - name: station_id
-        description: "Identifiant unique de la station Vélib."
+      - name: observation_id
+        description: >-
+          Clé technique déterministe construite à partir de
+          station_id et status_updated_at.
         tests:
           - unique
+          - not_null
+
+      - name: station_id
+        description: "Identifiant de la station Vélib."
+        tests:
           - not_null
 
       - name: station_name
@@ -16,13 +26,24 @@ models:
           - not_null
 
       - name: total_capacity
-        description: "Capacité totale de la station (bornes disponibles + vélos)."
+        description: "Capacité totale déclarée par l’API."
+        tests:
+          - not_null
+
+      - name: status_updated_at
+        description: "Horodatage métier de l’observation."
         tests:
           - not_null
 
       - name: station_status
-        description: "Statut catégorisé de la station pour l'analyse BI."
+        description: "Statut catégorisé de la station."
         tests:
           - not_null
           - accepted_values:
-              values: ['Normal', 'Presque pleine', 'Presque vide', 'Vide', 'Hors service']
+              values:
+                - "Normal"
+                - "Presque pleine"
+                - "Presque vide"
+                - "Vide"
+                - "Hors service"
+                - "Non installée"

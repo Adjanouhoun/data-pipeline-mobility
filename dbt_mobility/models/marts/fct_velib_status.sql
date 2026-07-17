@@ -1,11 +1,19 @@
 {{ config(materialized='table') }}
 
 with staging_data as (
-    select * from {{ ref('stg_velib_stations') }}
+    select *
+    from {{ ref('stg_velib_stations') }}
 ),
 
 metrics as (
     select
+        md5(
+            concat_ws(
+                '|',
+                station_id,
+                status_updated_at::text
+            )
+        ) as observation_id,
         station_id,
         station_name,
         is_installed,
@@ -22,15 +30,22 @@ metrics as (
         latitude,
         status_updated_at,
         loaded_at,
-        -- Calcul du taux d'occupation
-        case 
-            when total_capacity > 0 then round((bikes_available::numeric / total_capacity::numeric) * 100, 2)
+        case
+            when total_capacity > 0
+                then round(
+                    (
+                        bikes_available::numeric
+                        / total_capacity::numeric
+                    ) * 100,
+                    2
+                )
             else 0.0
         end as occupancy_rate_percent
     from staging_data
 )
 
 select
+    observation_id,
     station_id,
     station_name,
     is_installed,
@@ -46,8 +61,7 @@ select
     longitude,
     latitude,
     occupancy_rate_percent,
-    -- Catégorisation du statut de la station
-    case 
+    case
         when not is_installed then 'Non installée'
         when not is_renting_active then 'Hors service'
         when occupancy_rate_percent = 0 then 'Vide'
