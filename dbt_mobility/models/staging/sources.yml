@@ -2,6 +2,36 @@ version: 2
 
 sources:
   - name: raw_data
+    description: "Données Vélib chargées par Airflow."
     schema: schema_raw
+
+    freshness:
+      warn_after:
+        count: 2
+        period: hour
+      error_after:
+        count: 6
+        period: hour
+
+    loaded_at_field: ingested_at
+
     tables:
       - name: stg_raw_stations
+        description: >-
+          Observations brutes historisées des stations Vélib.
+
+        columns:
+          - name: stationcode
+            description: "Identifiant métier de la station."
+            tests:
+              - not_null
+
+          - name: last_reported
+            description: "Horodatage métier fourni par l’API."
+            tests:
+              - not_null
+
+          - name: ingested_at
+            description: "Horodatage technique d’ingestion."
+            tests:
+              - not_null

@@ -197,6 +197,7 @@ with DAG(
         bash_command="""
         set -e
         cd /opt/airflow/dbt_mobility
+        dbt source freshness --profiles-dir .
         dbt run --profiles-dir .
         dbt test --profiles-dir .
         """,
