@@ -2,12 +2,15 @@ x-airflow-common: &airflow-common
   image: apache/airflow:2.9.1-python3.11
   environment:
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres_metadata/airflow
-    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres_metadata/airflow
+    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}:${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}@postgres_metadata/${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
+    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}:${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}@postgres_metadata/${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
     - AIRFLOW__CORE__LOAD_EXAMPLES=False
     - AIRFLOW__CORE__LOGGING_LEVEL=INFO
     # Connexion automatique vers notre entrepôt Postgres local
-    - AIRFLOW_CONN_POSTGRES_DEST_CONN=postgresql://data_engineer:password123@postgres_destination:5432/mobility_warehouse
+    - AIRFLOW_CONN_POSTGRES_DEST_CONN=postgresql://${WAREHOUSE_DB_USER:?WAREHOUSE_DB_USER must be set}:${WAREHOUSE_DB_PASSWORD:?WAREHOUSE_DB_PASSWORD must be set}@postgres_destination:5432/${WAREHOUSE_DB_NAME:?WAREHOUSE_DB_NAME must be set}
+    - WAREHOUSE_DB_NAME=${WAREHOUSE_DB_NAME:?WAREHOUSE_DB_NAME must be set}
+    - WAREHOUSE_DB_USER=${WAREHOUSE_DB_USER:?WAREHOUSE_DB_USER must be set}
+    - WAREHOUSE_DB_PASSWORD=${WAREHOUSE_DB_PASSWORD:?WAREHOUSE_DB_PASSWORD must be set}
   volumes:
     - ./dags:/opt/airflow/dags
     - ./plugins:/opt/airflow/plugins
@@ -24,13 +27,17 @@ services:
     image: postgres:15-alpine
     container_name: postgres_metadata
     environment:
-      - POSTGRES_DB=airflow
-      - POSTGRES_USER=airflow
-      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
+      - POSTGRES_USER=${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}
+      - POSTGRES_PASSWORD=${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}
     volumes:
       - postgres_metadata_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set} -d ${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -40,15 +47,19 @@ services:
     image: postgres:15-alpine
     container_name: postgres_destination
     environment:
-      - POSTGRES_DB=mobility_warehouse
-      - POSTGRES_USER=data_engineer
-      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=${WAREHOUSE_DB_NAME:?WAREHOUSE_DB_NAME must be set}
+      - POSTGRES_USER=${WAREHOUSE_DB_USER:?WAREHOUSE_DB_USER must be set}
+      - POSTGRES_PASSWORD=${WAREHOUSE_DB_PASSWORD:?WAREHOUSE_DB_PASSWORD must be set}
     ports:
       - "5435:5432"
     volumes:
       - postgres_destination_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U data_engineer -d mobility_warehouse"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${WAREHOUSE_DB_USER:?WAREHOUSE_DB_USER must be set} -d ${WAREHOUSE_DB_NAME:?WAREHOUSE_DB_NAME must be set}",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -76,13 +87,13 @@ services:
     command: version
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres_metadata/airflow
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres_metadata/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}:${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}@postgres_metadata/${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}:${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}@postgres_metadata/${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
       - _AIRFLOW_DB_UPGRADE=true
       - _AIRFLOW_WWW_USER_CREATE=true
-      - _AIRFLOW_WWW_USER_USERNAME=admin
-      - _AIRFLOW_WWW_USER_PASSWORD=admin
-      
+      - _AIRFLOW_WWW_USER_USERNAME=${AIRFLOW_ADMIN_USERNAME:?AIRFLOW_ADMIN_USERNAME must be set}
+      - _AIRFLOW_WWW_USER_PASSWORD=${AIRFLOW_ADMIN_PASSWORD:?AIRFLOW_ADMIN_PASSWORD must be set}
+
   # --- CONFIGURATION SUPERSET (BI) ---
 
   # Base de données pour stocker les configurations de Superset
@@ -90,13 +101,17 @@ services:
     image: postgres:15-alpine
     container_name: postgres_superset
     environment:
-      - POSTGRES_DB=superset
-      - POSTGRES_USER=superset
-      - POSTGRES_PASSWORD=superset_password
+      - POSTGRES_DB=${SUPERSET_DB_NAME:?SUPERSET_DB_NAME must be set}
+      - POSTGRES_USER=${SUPERSET_DB_USER:?SUPERSET_DB_USER must be set}
+      - POSTGRES_PASSWORD=${SUPERSET_DB_PASSWORD:?SUPERSET_DB_PASSWORD must be set}
     volumes:
       - superset_db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U superset"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${SUPERSET_DB_USER:?SUPERSET_DB_USER must be set} -d ${SUPERSET_DB_NAME:?SUPERSET_DB_NAME must be set}",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -108,9 +123,9 @@ services:
     ports:
       - "8088:8088"
     environment:
-      - SUPERSET_SECRET_KEY=votre_cle_secrete_super_securisee_123456
-      - SQLALCHEMY_DATABASE_URI=postgresql://superset:superset_password@postgres_superset:5432/superset
-      - MAPBOX_API_KEY=${MAPBOX_API_KEY}
+      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY:?SUPERSET_SECRET_KEY must be set}
+      - SQLALCHEMY_DATABASE_URI=postgresql://${SUPERSET_DB_USER:?SUPERSET_DB_USER must be set}:${SUPERSET_DB_PASSWORD:?SUPERSET_DB_PASSWORD must be set}@postgres_superset:5432/${SUPERSET_DB_NAME:?SUPERSET_DB_NAME must be set}
+      - MAPBOX_API_KEY=${MAPBOX_API_KEY:-}
       - SUPERSET_HOME_PATH=/dashboard/list/
     volumes:
       - superset_home:/app/superset_home
@@ -125,13 +140,13 @@ services:
     image: dpage/pgadmin4:latest
     container_name: mobility_pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:?PGADMIN_DEFAULT_EMAIL must be set}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:?PGADMIN_DEFAULT_PASSWORD must be set}
     ports:
       - "8051:80"
     restart: always
     depends_on:
-      - postgres_destination  # <-- Corrigé pour pointer vers ton entrepôt !
+      - postgres_destination
 
 volumes:
   postgres_metadata_data:

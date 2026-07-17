@@ -1,12 +1,13 @@
 dbt_mobility:
+  target: prod
+
   outputs:
     prod:
       type: postgres
       host: postgres_destination
       port: 5432
-      user: data_engineer
-      password: password123
-      dbname: mobility_warehouse
+      user: "{{ env_var('WAREHOUSE_DB_USER') }}"
+      password: "{{ env_var('WAREHOUSE_DB_PASSWORD') }}"
+      dbname: "{{ env_var('WAREHOUSE_DB_NAME') }}"
       schema: schema_analytics
-      threads: 4
-  target: prod
+      threads: 2
