@@ -19,6 +19,7 @@ x-airflow-common: &airflow-common
     - ./plugins:/opt/airflow/plugins
     - ./configlogs:/opt/airflow/logs
     - ./dbt_mobility:/opt/airflow/dbt_mobility
+    - ./sql:/opt/airflow/sql:ro
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     postgres_metadata:
