@@ -1,4 +1,35 @@
-﻿venv/
+﻿# Secrets
 .env
-configlogs/
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Airflow
 logs/
+configlogs/
+
+# dbt
+dbt_mobility/target/
+dbt_mobility/logs/
+dbt_mobility/dbt_packages/
+dbt_mobility/.user.yml
+
+# Databases and runtime volumes
+pg_data/
+postgres_data/
+superset_home/
+*.db
+*.sqlite
+
+# Editors and operating systems
+.DS_Store
+.vscode/
+.idea/
