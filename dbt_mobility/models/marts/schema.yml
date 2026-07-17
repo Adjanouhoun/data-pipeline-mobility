@@ -1,6 +1,48 @@
 version: 2
 
 models:
+  - name: dim_stations
+    description: >-
+      Dimension courante des stations Vélib. Une ligne représente
+      une station dans son état descriptif le plus récemment ingéré.
+
+    columns:
+      - name: station_id
+        description: "Identifiant métier unique de la station."
+        tests:
+          - unique
+          - not_null
+
+      - name: station_name
+        description: "Nom courant de la station."
+        tests:
+          - not_null
+
+      - name: total_capacity
+        description: "Capacité courante déclarée par l’API."
+        tests:
+          - not_null
+
+      - name: longitude
+        description: "Longitude courante de la station."
+        tests:
+          - not_null
+
+      - name: latitude
+        description: "Latitude courante de la station."
+        tests:
+          - not_null
+
+      - name: first_seen_at
+        description: "Première ingestion connue de la station."
+        tests:
+          - not_null
+
+      - name: last_seen_at
+        description: "Ingestion la plus récente de la station."
+        tests:
+          - not_null
+
   - name: fct_velib_status
     description: >-
       Table de faits historisée contenant une ligne par station
@@ -9,8 +51,8 @@ models:
     columns:
       - name: observation_id
         description: >-
-          Clé technique déterministe construite à partir de
-          station_id et status_updated_at.
+          Clé déterministe construite à partir de station_id
+          et status_updated_at.
         tests:
           - unique
           - not_null
@@ -19,14 +61,17 @@ models:
         description: "Identifiant de la station Vélib."
         tests:
           - not_null
+          - relationships:
+              to: ref('dim_stations')
+              field: station_id
 
       - name: station_name
-        description: "Nom de la station."
+        description: "Nom de la station au moment de l’observation."
         tests:
           - not_null
 
       - name: total_capacity
-        description: "Capacité totale déclarée par l’API."
+        description: "Capacité déclarée au moment de l’observation."
         tests:
           - not_null
 
@@ -35,8 +80,13 @@ models:
         tests:
           - not_null
 
+      - name: loaded_at
+        description: "Horodatage technique d’ingestion."
+        tests:
+          - not_null
+
       - name: station_status
-        description: "Statut catégorisé de la station."
+        description: "Statut analytique de la station."
         tests:
           - not_null
           - accepted_values:

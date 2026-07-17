@@ -1,8 +1,25 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='observation_id',
+        incremental_strategy='delete+insert',
+        on_schema_change='sync_all_columns'
+    )
+}}
 
 with staging_data as (
     select *
     from {{ ref('stg_velib_stations') }}
+
+    {% if is_incremental() %}
+    where loaded_at > (
+        select coalesce(
+            max(loaded_at),
+            '1900-01-01'::timestamp
+        )
+        from {{ this }}
+    )
+    {% endif %}
 ),
 
 metrics as (
