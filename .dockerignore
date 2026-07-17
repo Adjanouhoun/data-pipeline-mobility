@@ -1,0 +1,33 @@
+# Git
+.git
+.gitignore
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv
+venv
+__pycache__
+**/__pycache__
+*.py[cod]
+.pytest_cache
+
+# Runtime data
+pg_data
+postgres_data
+configlogs
+logs
+superset_home
+
+# dbt artifacts
+dbt_mobility/target
+dbt_mobility/logs
+dbt_mobility/dbt_packages
+
+# Editors and operating systems
+.DS_Store
+.vscode
+.idea

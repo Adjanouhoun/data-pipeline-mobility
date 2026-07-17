@@ -1,11 +1,14 @@
 x-airflow-common: &airflow-common
-  image: apache/airflow:2.9.1-python3.11
+  build:
+    context: .
+    dockerfile: Dockerfile.airflow
+  image: mobility-airflow:2.9.1-dbt1.7.19
   environment:
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}:${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}@postgres_metadata/${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
     - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:?AIRFLOW_DB_USER must be set}:${AIRFLOW_DB_PASSWORD:?AIRFLOW_DB_PASSWORD must be set}@postgres_metadata/${AIRFLOW_DB_NAME:?AIRFLOW_DB_NAME must be set}
     - AIRFLOW__CORE__LOAD_EXAMPLES=False
-    - AIRFLOW__CORE__LOGGING_LEVEL=INFO
+    - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
     # Connexion automatique vers notre entrepôt Postgres local
     - AIRFLOW_CONN_POSTGRES_DEST_CONN=postgresql://${WAREHOUSE_DB_USER:?WAREHOUSE_DB_USER must be set}:${WAREHOUSE_DB_PASSWORD:?WAREHOUSE_DB_PASSWORD must be set}@postgres_destination:5432/${WAREHOUSE_DB_NAME:?WAREHOUSE_DB_NAME must be set}
     - WAREHOUSE_DB_NAME=${WAREHOUSE_DB_NAME:?WAREHOUSE_DB_NAME must be set}
@@ -16,7 +19,7 @@ x-airflow-common: &airflow-common
     - ./plugins:/opt/airflow/plugins
     - ./configlogs:/opt/airflow/logs
     - ./dbt_mobility:/opt/airflow/dbt_mobility
-  user: "0:0"
+  user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     postgres_metadata:
       condition: service_healthy

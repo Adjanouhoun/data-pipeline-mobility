@@ -196,7 +196,6 @@ with DAG(
         task_id="dbt_run_task",
         bash_command="""
         set -e
-        python -m pip install dbt-postgres==1.9.1
         cd /opt/airflow/dbt_mobility
         dbt run --profiles-dir .
         dbt test --profiles-dir .
