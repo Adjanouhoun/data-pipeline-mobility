@@ -3,16 +3,18 @@ version: 2
 models:
   - name: fct_ingestion_runs
     description: >-
-      Vue analytique des exécutions d’ingestion, destinée
-      au monitoring et aux futurs dashboards Superset.
+      Vue analytique des exécutions d’ingestion Vélib,
+      destinée au monitoring et aux futurs dashboards Superset.
 
     columns:
       - name: run_id
+        description: "Identifiant unique de l’exécution."
         tests:
           - unique
           - not_null
 
       - name: status
+        description: "Statut final de l’exécution."
         tests:
           - not_null
           - accepted_values:
@@ -21,17 +23,145 @@ models:
                 - "failed"
 
       - name: started_at
+        description: "Début de l’exécution."
         tests:
           - not_null
 
       - name: finished_at
+        description: "Fin de l’exécution."
         tests:
           - not_null
 
       - name: duration_seconds
+        description: "Durée totale en secondes."
         tests:
           - not_null
 
       - name: is_success
+        description: "Indique si l’exécution s’est terminée avec succès."
+        tests:
+          - not_null
+
+  - name: fct_traffic_ingestion_runs
+    description: >-
+      Vue analytique des exécutions d’ingestion du trafic routier.
+      Elle expose les volumes, performances et résultats des upserts
+      pour les futurs tableaux de bord Superset.
+
+    columns:
+      - name: run_key
+        description: "Clé unique de l’exécution d’ingestion."
+        tests:
+          - unique
+          - not_null
+
+      - name: airflow_run_id
+        description: "Identifiant natif du run Airflow."
+        tests:
+          - not_null
+
+      - name: dag_id
+        description: "Identifiant du DAG Airflow."
+        tests:
+          - not_null
+
+      - name: task_id
+        description: "Identifiant de la tâche d’ingestion."
+        tests:
+          - not_null
+
+      - name: started_at
+        description: "Début de l’exécution."
+        tests:
+          - not_null
+
+      - name: finished_at
+        description: "Fin de l’exécution."
+        tests:
+          - not_null
+
+      - name: status
+        description: "Statut final de l’exécution."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "success"
+                - "failed"
+
+      - name: window_start
+        description: "Début de la fenêtre métier interrogée."
+        tests:
+          - not_null
+
+      - name: window_end
+        description: "Fin de la fenêtre métier interrogée."
+        tests:
+          - not_null
+
+      - name: records_received
+        description: "Nombre d’observations uniques reçues."
+        tests:
+          - not_null
+
+      - name: records_inserted
+        description: "Nombre de nouvelles observations insérées."
+        tests:
+          - not_null
+
+      - name: records_updated
+        description: "Nombre d’observations existantes mises à jour."
+        tests:
+          - not_null
+
+      - name: records_unchanged
+        description: "Nombre d’observations déjà conformes en base."
+        tests:
+          - not_null
+
+      - name: duration_seconds
+        description: "Durée totale de l’ingestion en secondes."
+        tests:
+          - not_null
+
+      - name: records_per_second
+        description: "Débit de traitement en observations par seconde."
+        tests:
+          - not_null
+
+      - name: insertion_rate_percent
+        description: "Part des observations reçues ayant été insérées."
+        tests:
+          - not_null
+
+      - name: update_rate_percent
+        description: "Part des observations reçues ayant été mises à jour."
+        tests:
+          - not_null
+
+      - name: unchanged_rate_percent
+        description: "Part des observations reçues restées inchangées."
+        tests:
+          - not_null
+
+      - name: classified_record_count
+        description: >-
+          Somme des observations insérées, mises à jour
+          et inchangées.
+        tests:
+          - not_null
+
+      - name: counts_are_consistent
+        description: >-
+          Indique si toutes les observations reçues ont été
+          correctement classifiées.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - true
+
+      - name: is_success
+        description: "Indique si l’exécution s’est terminée avec succès."
         tests:
           - not_null

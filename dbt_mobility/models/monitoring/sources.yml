@@ -11,14 +11,89 @@ sources:
 
         columns:
           - name: run_id
+            description: "Identifiant unique de l’exécution."
             tests:
               - unique
               - not_null
 
           - name: status
+            description: "Statut final de l’exécution."
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - "success"
+                    - "failed"
+
+          - name: started_at
+            description: "Début de l’exécution."
+            tests:
+              - not_null
+
+      - name: traffic_ingestion_runs
+        description: >-
+          Une ligne par exécution d’ingestion du trafic routier
+          parisien.
+
+        columns:
+          - name: run_key
+            description: >-
+              Clé unique combinant le DAG et l’identifiant du run
+              Airflow.
+            tests:
+              - unique
+              - not_null
+
+          - name: airflow_run_id
+            description: "Identifiant natif du run Airflow."
+            tests:
+              - not_null
+
+          - name: dag_id
+            description: "Identifiant du DAG Airflow."
+            tests:
+              - not_null
+
+          - name: task_id
+            description: "Identifiant de la tâche d’ingestion."
             tests:
               - not_null
 
           - name: started_at
+            description: "Début de l’exécution."
+            tests:
+              - not_null
+
+          - name: finished_at
+            description: "Fin de l’exécution."
+            tests:
+              - not_null
+
+          - name: status
+            description: "Statut final de l’exécution."
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - "success"
+                    - "failed"
+
+          - name: window_start
+            description: "Début de la fenêtre métier interrogée."
+            tests:
+              - not_null
+
+          - name: window_end
+            description: "Fin de la fenêtre métier interrogée."
+            tests:
+              - not_null
+
+          - name: records_received
+            description: "Nombre d’observations uniques reçues."
+            tests:
+              - not_null
+
+          - name: duration_seconds
+            description: "Durée totale de l’ingestion en secondes."
             tests:
               - not_null

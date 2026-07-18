@@ -126,7 +126,9 @@ models:
           - not_null
 
       - name: observation_count
-        description: "Nombre d’observations agrégées pour la station et la journée."
+        description: >-
+          Nombre d’observations agrégées pour la station
+          et la journée.
         tests:
           - not_null
 
@@ -151,12 +153,15 @@ models:
           - not_null
 
       - name: average_occupancy_rate_percent
-        description: "Taux moyen d’occupation de la station en pourcentage."
+        description: >-
+          Taux moyen d’occupation de la station en pourcentage.
         tests:
           - not_null
 
       - name: empty_observation_count
-        description: "Nombre d’observations pendant lesquelles la station était vide."
+        description: >-
+          Nombre d’observations pendant lesquelles la station
+          était vide.
         tests:
           - not_null
 
@@ -168,7 +173,8 @@ models:
           - not_null
 
       - name: out_of_service_observation_count
-        description: "Nombre d’observations avec une station hors service."
+        description: >-
+          Nombre d’observations avec une station hors service.
         tests:
           - not_null
 
@@ -190,6 +196,280 @@ models:
           - not_null
 
       - name: last_loaded_at
-        description: "Dernier chargement technique inclus dans l’agrégat."
+        description: >-
+          Dernier chargement technique inclus dans l’agrégat.
+        tests:
+          - not_null
+
+  - name: dim_road_arcs
+    description: >-
+      Dimension courante des axes du réseau routier parisien.
+      Une ligne représente un axe dans son état descriptif
+      le plus récemment ingéré.
+
+    columns:
+      - name: arc_id
+        description: "Identifiant métier unique de l’axe routier."
+        tests:
+          - unique
+          - not_null
+
+      - name: arc_label
+        description: "Libellé courant de l’axe routier."
+
+      - name: upstream_node_id
+        description: "Identifiant du nœud situé en amont."
+
+      - name: upstream_node_label
+        description: "Libellé du nœud situé en amont."
+
+      - name: downstream_node_id
+        description: "Identifiant du nœud situé en aval."
+
+      - name: downstream_node_label
+        description: "Libellé du nœud situé en aval."
+
+      - name: longitude
+        description: "Longitude de référence de l’axe."
+
+      - name: latitude
+        description: "Latitude de référence de l’axe."
+
+      - name: first_observed_at
+        description: "Première observation métier connue de l’axe."
+        tests:
+          - not_null
+
+      - name: last_observed_at
+        description: "Observation métier la plus récente de l’axe."
+        tests:
+          - not_null
+
+      - name: first_loaded_at
+        description: "Première ingestion technique connue de l’axe."
+        tests:
+          - not_null
+
+      - name: last_loaded_at
+        description: "Ingestion technique la plus récente de l’axe."
+        tests:
+          - not_null
+
+  - name: fct_road_traffic
+    description: >-
+      Table de faits historisée du trafic routier parisien.
+      Une ligne représente une observation horaire pour un axe routier.
+
+    columns:
+      - name: observation_id
+        description: >-
+          Clé déterministe construite à partir de arc_id
+          et observed_at.
+        tests:
+          - unique
+          - not_null
+
+      - name: arc_id
+        description: "Identifiant métier de l’axe routier."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_road_arcs')
+              field: arc_id
+
+      - name: observed_at
+        description: "Horodatage métier de la mesure de trafic."
+        tests:
+          - not_null
+
+      - name: vehicle_flow
+        description: >-
+          Débit de véhicules mesuré pendant la période.
+          La valeur peut être absente dans la source.
+
+      - name: occupancy_rate
+        description: >-
+          Taux d’occupation mesuré sur l’axe.
+          La valeur peut être absente dans la source.
+
+      - name: traffic_status
+        description: "État du trafic fourni par la source."
+        tests:
+          - accepted_values:
+              values:
+                - "Fluide"
+                - "Pré-saturé"
+                - "Saturé"
+                - "Bloqué"
+                - "Inconnu"
+
+      - name: arc_status
+        description: "État opérationnel de l’axe routier."
+        tests:
+          - accepted_values:
+              values:
+                - "Ouvert"
+                - "Barré"
+                - "Invalide"
+
+      - name: has_vehicle_flow
+        description: "Indique si une mesure de débit est disponible."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - true
+                - false
+
+      - name: has_occupancy_rate
+        description: >-
+          Indique si une mesure de taux d’occupation est disponible.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - true
+                - false
+
+      - name: has_traffic_measurement
+        description: >-
+          Indique si au moins une mesure de débit ou d’occupation
+          est disponible.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - true
+                - false
+
+      - name: loaded_at
+        description: "Horodatage technique d’ingestion."
+        tests:
+          - not_null
+
+      - name: source_run_id
+        description: "Identifiant du run Airflow ayant chargé la donnée."
+        tests:
+          - not_null
+
+  - name: agg_road_traffic_daily
+    description: >-
+      Agrégats journaliers du trafic routier parisien.
+      Une ligne représente un axe routier et une journée.
+
+    columns:
+      - name: daily_traffic_id
+        description: >-
+          Clé déterministe construite à partir de arc_id
+          et observation_date.
+        tests:
+          - unique
+          - not_null
+
+      - name: arc_id
+        description: "Identifiant métier de l’axe routier."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_road_arcs')
+              field: arc_id
+
+      - name: observation_date
+        description: "Date métier des observations agrégées."
+        tests:
+          - not_null
+
+      - name: observation_count
+        description: "Nombre total d’observations agrégées."
+        tests:
+          - not_null
+
+      - name: vehicle_flow_observation_count
+        description: >-
+          Nombre d’observations disposant d’une mesure de débit.
+        tests:
+          - not_null
+
+      - name: occupancy_observation_count
+        description: >-
+          Nombre d’observations disposant d’une mesure d’occupation.
+        tests:
+          - not_null
+
+      - name: average_vehicle_flow
+        description: >-
+          Débit moyen calculé à partir des mesures disponibles.
+
+      - name: maximum_vehicle_flow
+        description: >-
+          Débit maximal calculé à partir des mesures disponibles.
+
+      - name: average_occupancy_rate
+        description: >-
+          Taux d’occupation moyen calculé à partir des mesures
+          disponibles.
+
+      - name: maximum_occupancy_rate
+        description: >-
+          Taux d’occupation maximal calculé à partir des mesures
+          disponibles.
+
+      - name: fluid_observation_count
+        description: "Nombre d’observations avec un trafic fluide."
+        tests:
+          - not_null
+
+      - name: pre_saturated_observation_count
+        description: "Nombre d’observations avec un trafic pré-saturé."
+        tests:
+          - not_null
+
+      - name: saturated_observation_count
+        description: "Nombre d’observations avec un trafic saturé."
+        tests:
+          - not_null
+
+      - name: blocked_observation_count
+        description: "Nombre d’observations avec un trafic bloqué."
+        tests:
+          - not_null
+
+      - name: unknown_observation_count
+        description: >-
+          Nombre d’observations dont l’état du trafic est inconnu
+          ou absent.
+        tests:
+          - not_null
+
+      - name: open_arc_observation_count
+        description: "Nombre d’observations avec un axe ouvert."
+        tests:
+          - not_null
+
+      - name: closed_arc_observation_count
+        description: "Nombre d’observations avec un axe barré."
+        tests:
+          - not_null
+
+      - name: invalid_arc_observation_count
+        description: >-
+          Nombre d’observations avec un axe invalide
+          ou sans état renseigné.
+        tests:
+          - not_null
+
+      - name: first_observed_at
+        description: "Première observation métier de la journée."
+        tests:
+          - not_null
+
+      - name: last_observed_at
+        description: "Dernière observation métier de la journée."
+        tests:
+          - not_null
+
+      - name: last_loaded_at
+        description: >-
+          Dernier chargement technique inclus dans l’agrégat.
         tests:
           - not_null

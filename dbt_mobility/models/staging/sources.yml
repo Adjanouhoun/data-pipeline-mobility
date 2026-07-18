@@ -35,3 +35,46 @@ sources:
             description: "Horodatage technique d’ingestion."
             tests:
               - not_null
+
+  - name: road_traffic_raw
+    description: >-
+      Données horaires des capteurs permanents de trafic routier
+      chargées par Airflow.
+    schema: schema_raw
+
+    freshness:
+      warn_after:
+        count: 2
+        period: hour
+      error_after:
+        count: 6
+        period: hour
+
+    loaded_at_field: ingested_at
+
+    tables:
+      - name: road_traffic_observations
+        description: >-
+          Observations brutes et historisées du trafic routier
+          parisien.
+
+        columns:
+          - name: arc_id
+            description: "Identifiant métier de l’arc routier."
+            tests:
+              - not_null
+
+          - name: observed_at
+            description: "Fin UTC de la période horaire observée."
+            tests:
+              - not_null
+
+          - name: ingested_at
+            description: "Horodatage technique d’ingestion."
+            tests:
+              - not_null
+
+          - name: source_run_id
+            description: "Identifiant du run Airflow source."
+            tests:
+              - not_null
