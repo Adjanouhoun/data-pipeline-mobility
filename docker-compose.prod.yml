@@ -11,10 +11,18 @@ services:
     restart: unless-stopped
     ports: !override
       - "127.0.0.1:8085:8080"
+    volumes:
+      - airflow_logs:/opt/airflow/logs
 
   airflow-scheduler:
     restart: unless-stopped
     ports: !override []
+    volumes:
+      - airflow_logs:/opt/airflow/logs
+
+  airflow-init:
+    volumes:
+      - airflow_logs:/opt/airflow/logs
 
   postgres_superset:
     restart: unless-stopped
@@ -29,3 +37,6 @@ services:
     restart: unless-stopped
     ports: !override
       - "127.0.0.1:8051:80"
+
+volumes:
+  airflow_logs:
