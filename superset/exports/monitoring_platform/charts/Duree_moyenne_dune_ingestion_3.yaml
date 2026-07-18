@@ -1,0 +1,56 @@
+slice_name: "Dur\xE9e moyenne d\u2019une ingestion"
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 1__table
+  viz_type: big_number_total
+  slice_id: 3
+  metric:
+    aggregate: null
+    column: null
+    datasourceWarning: false
+    expressionType: SQL
+    hasCustomLabel: false
+    label: "ROUND(\n    AVG(duration_seconds),\n    2\n)"
+    optionName: metric_9qr2ywat1j8_dtkkks8z979
+    sqlExpression: "ROUND(\n    AVG(duration_seconds),\n    2\n)"
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: started_at
+  subheader: "Secondes par ex\xE9cution"
+  header_font_size: 0.2
+  subheader_font_size: 0.125
+  y_axis_format: ',.2f'
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 1
+query_context: "{\"datasource\":{\"id\":1,\"type\":\"table\"},\"force\":false,\"queries\"\
+  :[{\"filters\":[{\"col\":\"started_at\",\"op\":\"TEMPORAL_RANGE\",\"val\":\"No filter\"\
+  }],\"extras\":{\"having\":\"\",\"where\":\"\"},\"applied_time_extras\":{},\"columns\"\
+  :[],\"metrics\":[{\"aggregate\":null,\"column\":null,\"datasourceWarning\":false,\"\
+  expressionType\":\"SQL\",\"hasCustomLabel\":false,\"label\":\"ROUND(\\n    AVG(duration_seconds),\\\
+  n    2\\n)\",\"optionName\":\"metric_9qr2ywat1j8_dtkkks8z979\",\"sqlExpression\"\
+  :\"ROUND(\\n    AVG(duration_seconds),\\n    2\\n)\"}],\"annotation_layers\":[],\"\
+  series_limit\":0,\"order_desc\":true,\"url_params\":{},\"custom_params\":{},\"custom_form_data\"\
+  :{}}],\"form_data\":{\"datasource\":\"1__table\",\"viz_type\":\"big_number_total\"\
+  ,\"slice_id\":3,\"metric\":{\"aggregate\":null,\"column\":null,\"datasourceWarning\"\
+  :false,\"expressionType\":\"SQL\",\"hasCustomLabel\":false,\"label\":\"ROUND(\\\
+  n    AVG(duration_seconds),\\n    2\\n)\",\"optionName\":\"metric_9qr2ywat1j8_dtkkks8z979\"\
+  ,\"sqlExpression\":\"ROUND(\\n    AVG(duration_seconds),\\n    2\\n)\"},\"adhoc_filters\"\
+  :[{\"clause\":\"WHERE\",\"comparator\":\"No filter\",\"expressionType\":\"SIMPLE\"\
+  ,\"operator\":\"TEMPORAL_RANGE\",\"subject\":\"started_at\"}],\"subheader\":\"Secondes\
+  \ par ex\xE9cution\",\"header_font_size\":0.2,\"subheader_font_size\":0.125,\"y_axis_format\"\
+  :\",.2f\",\"time_format\":\"smart_date\",\"conditional_formatting\":[],\"extra_form_data\"\
+  :{},\"dashboards\":[1],\"force\":false,\"result_format\":\"json\",\"result_type\"\
+  :\"full\"},\"result_format\":\"json\",\"result_type\":\"full\"}"
+cache_timeout: null
+uuid: bca29722-de6a-419f-9d45-279d92461849
+version: 1.0.0
+dataset_uuid: a3f8ea18-ef60-4152-9a45-9e5e28a07c42

@@ -165,3 +165,92 @@ models:
         description: "Indique si l’exécution s’est terminée avec succès."
         tests:
           - not_null
+
+  - name: fct_pipeline_runs
+    description: >-
+      Vue unifiée des exécutions Vélib et trafic routier,
+      utilisée par le dashboard Superset Monitoring de la plateforme.
+
+    columns:
+      - name: pipeline_run_id
+        description: "Clé unique combinant le pipeline et le run."
+        tests:
+          - unique
+          - not_null
+
+      - name: pipeline_name
+        description: "Nom fonctionnel du pipeline."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "Vélib"
+                - "Trafic routier"
+
+      - name: airflow_run_id
+        description: "Identifiant natif du run Airflow."
+        tests:
+          - not_null
+
+      - name: started_at
+        description: "Début de l’exécution."
+        tests:
+          - not_null
+
+      - name: finished_at
+        description: "Fin de l’exécution."
+        tests:
+          - not_null
+
+      - name: status
+        description: "Statut final de l’exécution."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "success"
+                - "failed"
+      - name: records_received
+        description: "Nombre d’observations reçues."
+        tests:
+          - not_null
+
+      - name: records_inserted
+        description: "Nombre d’observations insérées."
+        tests:
+          - not_null
+
+      - name: records_updated
+        description: "Nombre d’observations mises à jour."
+        tests:
+          - not_null
+
+      - name: records_unchanged
+        description: "Nombre d’observations inchangées ou ignorées."
+        tests:
+          - not_null
+
+      - name: changed_record_count
+        description: "Somme des observations insérées et mises à jour."
+        tests:
+          - not_null
+
+      - name: duration_seconds
+        description: "Durée de l’exécution en secondes."
+        tests:
+          - not_null
+
+      - name: records_per_second
+        description: "Débit de traitement en observations par seconde."
+        tests:
+          - not_null
+
+      - name: unchanged_rate_percent
+        description: "Part des observations inchangées ou ignorées."
+        tests:
+          - not_null
+
+      - name: is_success
+        description: "Indique si l’exécution a réussi."
+        tests:
+          - not_null

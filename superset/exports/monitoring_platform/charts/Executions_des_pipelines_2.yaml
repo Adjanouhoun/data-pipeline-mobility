@@ -1,0 +1,46 @@
+slice_name: "Ex\xE9cutions des pipelines"
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 1__table
+  viz_type: big_number_total
+  slice_id: 2
+  metric: count
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: started_at
+  subheader: "Runs Airflow enregistr\xE9s \u2014 V\xE9lib et trafic"
+  header_font_size: 0.2
+  subheader_font_size: 0.125
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting:
+  - colorScheme: '#ACE1C4'
+    column: count
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 1
+query_context: "{\"datasource\":{\"id\":1,\"type\":\"table\"},\"force\":false,\"queries\"\
+  :[{\"filters\":[{\"col\":\"started_at\",\"op\":\"TEMPORAL_RANGE\",\"val\":\"No filter\"\
+  }],\"extras\":{\"having\":\"\",\"where\":\"\"},\"applied_time_extras\":{},\"columns\"\
+  :[],\"metrics\":[\"count\"],\"annotation_layers\":[],\"series_limit\":0,\"order_desc\"\
+  :true,\"url_params\":{},\"custom_params\":{},\"custom_form_data\":{}}],\"form_data\"\
+  :{\"datasource\":\"1__table\",\"viz_type\":\"big_number_total\",\"slice_id\":2,\"\
+  metric\":\"count\",\"adhoc_filters\":[{\"clause\":\"WHERE\",\"comparator\":\"No\
+  \ filter\",\"expressionType\":\"SIMPLE\",\"operator\":\"TEMPORAL_RANGE\",\"subject\"\
+  :\"started_at\"}],\"subheader\":\"Runs Airflow enregistr\xE9s \u2014 V\xE9lib et\
+  \ trafic\",\"header_font_size\":0.2,\"subheader_font_size\":0.125,\"y_axis_format\"\
+  :\"SMART_NUMBER\",\"time_format\":\"smart_date\",\"conditional_formatting\":[{\"\
+  colorScheme\":\"#ACE1C4\",\"column\":\"count\",\"operator\":\"None\"}],\"extra_form_data\"\
+  :{},\"dashboards\":[1],\"force\":false,\"result_format\":\"json\",\"result_type\"\
+  :\"full\"},\"result_format\":\"json\",\"result_type\":\"full\"}"
+cache_timeout: null
+uuid: 25faaccb-1f7f-4189-b3fc-fe61c0c4348a
+version: 1.0.0
+dataset_uuid: a3f8ea18-ef60-4152-9a45-9e5e28a07c42
