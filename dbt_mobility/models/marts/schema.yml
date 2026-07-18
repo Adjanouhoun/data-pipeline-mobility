@@ -473,3 +473,99 @@ models:
           Dernier chargement technique inclus dans l’agrégat.
         tests:
           - not_null
+
+  - name: fct_velib_current_status
+    description: >-
+      Dernier état connu de chaque station Vélib, destiné aux KPI
+      et à la carte du dashboard Superset Disponibilité Vélib.
+
+    columns:
+      - name: observation_id
+        description: "Identifiant de la dernière observation retenue."
+        tests:
+          - unique
+          - not_null
+
+      - name: station_id
+        description: "Identifiant métier unique de la station."
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('dim_stations')
+              field: station_id
+
+      - name: station_name
+        description: "Nom courant de la station."
+        tests:
+          - not_null
+
+      - name: bikes_available
+        description: "Nombre de vélos actuellement disponibles."
+        tests:
+          - not_null
+
+      - name: mechanical_bikes
+        description: "Nombre de vélos mécaniques disponibles."
+        tests:
+          - not_null
+
+      - name: electric_bikes
+        description: "Nombre de vélos électriques disponibles."
+        tests:
+          - not_null
+
+      - name: docks_available
+        description: "Nombre de bornes disponibles."
+        tests:
+          - not_null
+
+      - name: total_capacity
+        description: "Capacité déclarée de la station."
+        tests:
+          - not_null
+
+      - name: longitude
+        description: "Longitude de la station."
+        tests:
+          - not_null
+
+      - name: latitude
+        description: "Latitude de la station."
+        tests:
+          - not_null
+
+      - name: station_status
+        description: "Dernier statut analytique de la station."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "Normal"
+                - "Presque pleine"
+                - "Presque vide"
+                - "Vide"
+                - "Hors service"
+                - "Non installée"
+
+      - name: status_updated_at
+        description: "Horodatage métier de la dernière observation."
+        tests:
+          - not_null
+
+      - name: loaded_at
+        description: "Horodatage technique de son ingestion."
+        tests:
+          - not_null
+
+      - name: data_age_minutes
+        description: "Âge technique de la donnée en minutes."
+        tests:
+          - not_null
+
+      - name: is_fresh
+        description: >-
+          Indique si l’observation a été chargée durant les
+          deux dernières heures.
+        tests:
+          - not_null
