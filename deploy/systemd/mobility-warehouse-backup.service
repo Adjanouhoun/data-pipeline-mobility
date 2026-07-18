@@ -1,0 +1,17 @@
+[Unit]
+Description=Mobility warehouse verified PostgreSQL backup
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/data-pipeline-mobility
+ExecStart=/home/ubuntu/data-pipeline-mobility/scripts/run_verified_warehouse_backup.sh
+TimeoutStartSec=2h
+Nice=10
+
+[Install]
+WantedBy=multi-user.target
