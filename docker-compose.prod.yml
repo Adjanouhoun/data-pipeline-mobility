@@ -1,0 +1,31 @@
+services:
+  postgres_metadata:
+    restart: unless-stopped
+    ports: !override []
+
+  postgres_destination:
+    restart: unless-stopped
+    ports: !override []
+
+  airflow-webserver:
+    restart: unless-stopped
+    ports: !override
+      - "127.0.0.1:8085:8080"
+
+  airflow-scheduler:
+    restart: unless-stopped
+    ports: !override []
+
+  postgres_superset:
+    restart: unless-stopped
+    ports: !override []
+
+  superset:
+    restart: unless-stopped
+    ports: !override
+      - "127.0.0.1:8088:8088"
+
+  pgadmin:
+    restart: unless-stopped
+    ports: !override
+      - "127.0.0.1:8051:80"
