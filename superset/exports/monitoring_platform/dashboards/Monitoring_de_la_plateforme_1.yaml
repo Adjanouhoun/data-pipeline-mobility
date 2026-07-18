@@ -1,0 +1,293 @@
+dashboard_title: Monitoring de la plateforme
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: true
+uuid: cd62b489-cb5f-4df1-8c8e-74f130fae1ab
+position:
+  CHART-explore-1-1:
+    children: []
+    id: CHART-explore-1-1
+    meta:
+      chartId: 1
+      height: 31
+      sliceName: "KPI - Taux de succ\xE8s"
+      uuid: 5d12ee24-027b-468c-a6b6-1075a127a5af
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-2cXO8Kw1ql
+    type: CHART
+  CHART-explore-2-1:
+    children: []
+    id: CHART-explore-2-1
+    meta:
+      chartId: 2
+      height: 31
+      sliceName: "Ex\xE9cutions des pipelines"
+      uuid: 25faaccb-1f7f-4189-b3fc-fe61c0c4348a
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-2cXO8Kw1ql
+    type: CHART
+  CHART-explore-3-1:
+    children: []
+    id: CHART-explore-3-1
+    meta:
+      chartId: 3
+      height: 31
+      sliceName: "Dur\xE9e moyenne d\u2019une ingestion"
+      uuid: bca29722-de6a-419f-9d45-279d92461849
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-2cXO8Kw1ql
+    type: CHART
+  CHART-explore-4-1:
+    children: []
+    id: CHART-explore-4-1
+    meta:
+      chartId: 4
+      height: 31
+      sliceName: "Observations re\xE7ues"
+      uuid: 2f455353-f8a2-4810-af1f-2a28f9df9a14
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-2cXO8Kw1ql
+    type: CHART
+  CHART-explore-5-1:
+    children: []
+    id: CHART-explore-5-1
+    meta:
+      chartId: 5
+      height: 50
+      sliceName: "\xC9volution de la dur\xE9e des ingestions"
+      uuid: ba744374-f4c7-481c-928c-e52205ada488
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-WKzQn1uDki
+    type: CHART
+  CHART-explore-6-1:
+    children: []
+    id: CHART-explore-6-1
+    meta:
+      chartId: 6
+      height: 50
+      sliceName: "Volumes trait\xE9s par pipeline"
+      uuid: 318d0676-8dce-4f39-90b6-16723eeab971
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-WKzQn1uDki
+    type: CHART
+  CHART-explore-7-1:
+    children: []
+    id: CHART-explore-7-1
+    meta:
+      chartId: 7
+      height: 50
+      sliceName: "Derni\xE8res ex\xE9cutions des pipelines"
+      uuid: 52a8f263-0d09-414e-9cdf-426e65643ea1
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-WKzQn1uDki
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - ROW-2cXO8Kw1ql
+    - ROW-WKzQn1uDki
+    - ROW-XqVvt47Ip
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Monitoring de la plateforme
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-2cXO8Kw1ql:
+    children:
+    - CHART-explore-1-1
+    - CHART-explore-2-1
+    - CHART-explore-3-1
+    - CHART-explore-4-1
+    id: ROW-2cXO8Kw1ql
+    meta:
+      '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-WKzQn1uDki:
+    children:
+    - CHART-explore-5-1
+    - CHART-explore-6-1
+    id: ROW-WKzQn1uDki
+    meta:
+      '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-XqVvt47Ip:
+    children:
+    - CHART-explore-7-1
+    id: ROW-XqVvt47Ip
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+metadata:
+  chart_configuration:
+    '5':
+      id: 5
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 6
+        - 7
+    '6':
+      id: 6
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 7
+    '7':
+      id: 7
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  color_scheme: ''
+  refresh_frequency: 0
+  shared_label_colors:
+    Trafic routier: '#1FA8C9'
+    "V\xE9lib": '#5AC189'
+    "Re\xE7ues": '#454E7C'
+    "Inchang\xE9es": '#666666'
+    "Ins\xE9r\xE9es": '#FCC700'
+  color_scheme_domain: []
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+  native_filter_configuration:
+  - id: NATIVE_FILTER-JgfxGqeT1
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Pipeline
+    filterType: filter_select
+    targets:
+    - column:
+        name: pipeline_name
+      datasetUuid: a3f8ea18-ef60-4152-9a45-9e5e28a07c42
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    tabsInScope: []
+  - id: NATIVE_FILTER-2WDl9vpr4
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: ' Statut'
+    filterType: filter_select
+    targets:
+    - column:
+        name: status
+      datasetUuid: a3f8ea18-ef60-4152-9a45-9e5e28a07c42
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    tabsInScope: []
+version: 1.0.0

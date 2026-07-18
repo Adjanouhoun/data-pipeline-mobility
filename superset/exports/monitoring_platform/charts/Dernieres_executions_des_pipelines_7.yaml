@@ -1,0 +1,49 @@
+slice_name: "Derni\xE8res ex\xE9cutions des pipelines"
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 1__table
+  viz_type: table
+  query_mode: raw
+  groupby: []
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    started_at: true
+    finished_at: true
+  all_columns:
+  - pipeline_name
+  - started_at
+  - status
+  - records_received
+  - records_inserted
+  - records_updated
+  - records_unchanged
+  - duration_seconds
+  - records_per_second
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    subject: started_at
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  order_by_cols: []
+  server_pagination: false
+  row_limit: '20'
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  extra_form_data: {}
+  dashboards:
+  - 1
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"filters":[{"col":"started_at","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":["pipeline_name","started_at","status","records_received","records_inserted","records_updated","records_unchanged","duration_seconds","records_per_second"],"orderby":[],"annotation_layers":[],"row_limit":20,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"datasource":"1__table","viz_type":"table","query_mode":"raw","groupby":[],"time_grain_sqla":"P1D","temporal_columns_lookup":{"started_at":true,"finished_at":true},"all_columns":["pipeline_name","started_at","status","records_received","records_inserted","records_updated","records_unchanged","duration_seconds","records_per_second"],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","subject":"started_at","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","expressionType":"SIMPLE"}],"order_by_cols":[],"server_pagination":false,"row_limit":"20","server_page_length":10,"order_desc":true,"table_timestamp_format":"smart_date","show_cell_bars":true,"color_pn":true,"extra_form_data":{},"dashboards":[1],"force":false,"result_format":"json","result_type":"full","include_time":false},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 52a8f263-0d09-414e-9cdf-426e65643ea1
+version: 1.0.0
+dataset_uuid: a3f8ea18-ef60-4152-9a45-9e5e28a07c42

@@ -1,0 +1,51 @@
+slice_name: "KPI - Taux de succ\xE8s"
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 1__table
+  viz_type: big_number_total
+  slice_id: 1
+  metric:
+    aggregate: null
+    column: null
+    datasourceWarning: false
+    expressionType: SQL
+    hasCustomLabel: false
+    label: "ROUND(\n    100.0\n    * SUM(\n        CASE\n            WHEN is_success\
+      \ THEN 1\n            ELSE 0\n        END\n    )\n    / NULLIF(COUNT(*), 0),\n\
+      \    2\n)"
+    optionName: metric_a5r5580ii_9hi0xr7liop
+    sqlExpression: "ROUND(\n    100.0\n    * SUM(\n        CASE\n            WHEN\
+      \ is_success THEN 1\n            ELSE 0\n        END\n    )\n    / NULLIF(COUNT(*),\
+      \ 0),\n    2\n)"
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: started_at
+  header_font_size: 0.2
+  subheader_font_size: 0.125
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 1
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"filters":[{"col":"started_at","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":false,"label":"ROUND(\n    100.0\n    *
+  SUM(\n        CASE\n            WHEN is_success THEN 1\n            ELSE 0\n        END\n    )\n    /
+  NULLIF(COUNT(*), 0),\n    2\n)","optionName":"metric_a5r5580ii_9hi0xr7liop","sqlExpression":"ROUND(\n    100.0\n    *
+  SUM(\n        CASE\n            WHEN is_success THEN 1\n            ELSE 0\n        END\n    )\n    /
+  NULLIF(COUNT(*), 0),\n    2\n)"}],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"1__table","viz_type":"big_number_total","slice_id":1,"metric":{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":false,"label":"ROUND(\n    100.0\n    *
+  SUM(\n        CASE\n            WHEN is_success THEN 1\n            ELSE 0\n        END\n    )\n    /
+  NULLIF(COUNT(*), 0),\n    2\n)","optionName":"metric_a5r5580ii_9hi0xr7liop","sqlExpression":"ROUND(\n    100.0\n    *
+  SUM(\n        CASE\n            WHEN is_success THEN 1\n            ELSE 0\n        END\n    )\n    /
+  NULLIF(COUNT(*), 0),\n    2\n)"},"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","expressionType":"SIMPLE","operator":"TEMPORAL_RANGE","subject":"started_at"}],"header_font_size":0.2,"subheader_font_size":0.125,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","conditional_formatting":[],"extra_form_data":{},"dashboards":[1],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 5d12ee24-027b-468c-a6b6-1075a127a5af
+version: 1.0.0
+dataset_uuid: a3f8ea18-ef60-4152-9a45-9e5e28a07c42
