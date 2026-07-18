@@ -1,4 +1,11 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='table',
+        indexes=[
+            {'columns': ['station_id'], 'unique': True}
+        ]
+    )
+}}
 
 with station_history as (
     select
