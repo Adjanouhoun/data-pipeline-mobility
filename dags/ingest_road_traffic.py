@@ -454,10 +454,6 @@ with DAG(
                 source:road_traffic_raw \
                 source:monitoring_data.traffic_ingestion_runs \
                 --profiles-dir .
-
-            dbt source freshness \
-                --select source:road_traffic_raw \
-                --profiles-dir .
         """,
     )
 

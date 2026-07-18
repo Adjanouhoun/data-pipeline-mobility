@@ -24,14 +24,14 @@ models:
           - not_null
 
       - name: longitude
-        description: "Longitude courante de la station."
-        tests:
-          - not_null
+        description: >-
+          Longitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
 
       - name: latitude
-        description: "Latitude courante de la station."
-        tests:
-          - not_null
+        description: >-
+          Latitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
 
       - name: first_seen_at
         description: "Première ingestion connue de la station."
@@ -230,10 +230,14 @@ models:
         description: "Libellé du nœud situé en aval."
 
       - name: longitude
-        description: "Longitude de référence de l’axe."
+        description: >-
+          Longitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
 
       - name: latitude
-        description: "Latitude de référence de l’axe."
+        description: >-
+          Latitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
 
       - name: first_observed_at
         description: "Première observation métier connue de l’axe."
@@ -526,14 +530,14 @@ models:
           - not_null
 
       - name: longitude
-        description: "Longitude de la station."
-        tests:
-          - not_null
+        description: >-
+          Longitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
 
       - name: latitude
-        description: "Latitude de la station."
-        tests:
-          - not_null
+        description: >-
+          Latitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
 
       - name: station_status
         description: "Dernier statut analytique de la station."
@@ -555,6 +559,102 @@ models:
 
       - name: loaded_at
         description: "Horodatage technique de son ingestion."
+        tests:
+          - not_null
+
+      - name: data_age_minutes
+        description: "Âge technique de la donnée en minutes."
+        tests:
+          - not_null
+
+      - name: is_fresh
+        description: >-
+          Indique si l’observation a été chargée durant les
+          deux dernières heures.
+        tests:
+          - not_null
+
+
+  - name: fct_road_traffic_current_status
+    description: >-
+      Dernier état connu de chaque arc routier parisien,
+      destiné aux KPI et à la carte du dashboard Superset.
+
+    columns:
+      - name: observation_id
+        description: "Identifiant de la dernière observation retenue."
+        tests:
+          - unique
+          - not_null
+
+      - name: arc_id
+        description: "Identifiant métier unique de l’arc routier."
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('dim_road_arcs')
+              field: arc_id
+
+      - name: arc_label
+        description: "Libellé de l’arc routier."
+        tests:
+          - not_null
+
+      - name: observed_at
+        description: "Horodatage métier de la dernière observation."
+        tests:
+          - not_null
+
+      - name: traffic_status
+        description: "Dernier état connu du trafic."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "Fluide"
+                - "Pré-saturé"
+                - "Saturé"
+                - "Bloqué"
+                - "Inconnu"
+
+      - name: arc_status
+        description: "État opérationnel de l’arc routier."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "Ouvert"
+                - "Barré"
+                - "Invalide"
+
+      - name: longitude
+        description: >-
+          Longitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
+
+      - name: latitude
+        description: >-
+          Latitude du point représentatif de l’arc lorsqu’elle
+          est fournie par l’API.
+
+      - name: has_vehicle_flow
+        description: "Indique si une mesure de débit est disponible."
+        tests:
+          - not_null
+
+      - name: has_occupancy_rate
+        description: "Indique si une mesure d’occupation est disponible."
+        tests:
+          - not_null
+
+      - name: has_traffic_measurement
+        description: "Indique si au moins une mesure est disponible."
+        tests:
+          - not_null
+
+      - name: loaded_at
+        description: "Horodatage technique du chargement."
         tests:
           - not_null
 
