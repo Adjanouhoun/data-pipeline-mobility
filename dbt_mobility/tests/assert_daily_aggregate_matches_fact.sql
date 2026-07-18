@@ -11,6 +11,7 @@ with fact_counts as (
 
 daily_counts as (
     select
+        daily_station_id,
         station_id,
         observation_date,
         observation_count
@@ -18,19 +19,14 @@ daily_counts as (
 )
 
 select
-    coalesce(
-        fact_counts.station_id,
-        daily_counts.station_id
-    ) as station_id,
-    coalesce(
-        fact_counts.observation_date,
-        daily_counts.observation_date
-    ) as observation_date,
+    fact_counts.station_id,
+    fact_counts.observation_date,
     fact_counts.expected_observation_count,
     daily_counts.observation_count
 from fact_counts
-full outer join daily_counts
+left join daily_counts
     on fact_counts.station_id = daily_counts.station_id
     and fact_counts.observation_date = daily_counts.observation_date
-where fact_counts.expected_observation_count is distinct from
-    daily_counts.observation_count
+where daily_counts.daily_station_id is null
+    or fact_counts.expected_observation_count
+        <> daily_counts.observation_count

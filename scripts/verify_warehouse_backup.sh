@@ -2,6 +2,8 @@
 
 set -Eeuo pipefail
 
+umask 077
+
 script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 project_root="$(cd "${script_directory}/.." && pwd)"
 
@@ -30,6 +32,14 @@ backup_filename="$(basename "${backup_path}")"
 backup_path="${backup_directory}/${backup_filename}"
 checksum_filename="${backup_filename}.sha256"
 checksum_path="${backup_directory}/${checksum_filename}"
+verification_marker="${backup_path}.verified"
+temporary_marker="${verification_marker}.part"
+
+cleanup_temporary_marker() {
+    rm -f "${temporary_marker}"
+}
+
+trap cleanup_temporary_marker EXIT
 
 if [[ ! -f "${checksum_path}" ]]; then
     echo "Error: checksum file not found: ${checksum_path}" >&2
@@ -172,4 +182,20 @@ echo "Restored row counts:"
             "
     ' sh "${verification_database}"
 
+verified_checksum="$(awk 'NR == 1 {print $1}' "${checksum_path}")"
+
+if [[ -z "${verified_checksum}" ]]; then
+    echo "Error: unable to read the verified checksum." >&2
+    exit 1
+fi
+
+{
+    echo "backup=${backup_filename}"
+    echo "sha256=${verified_checksum}"
+    echo "verified_at_utc=$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+} > "${temporary_marker}"
+
+mv "${temporary_marker}" "${verification_marker}"
+
 echo "Backup restoration verified successfully."
+echo "Verification marker: ${verification_marker}"

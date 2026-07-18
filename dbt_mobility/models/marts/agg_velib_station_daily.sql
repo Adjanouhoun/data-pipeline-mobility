@@ -11,6 +11,7 @@
         ]
     )
 }}
+{{ prevent_unapproved_full_refresh() }}
 
 with fact_data as (
     select *
