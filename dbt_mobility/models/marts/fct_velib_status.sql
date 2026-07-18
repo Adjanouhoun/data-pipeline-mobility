@@ -3,7 +3,12 @@
         materialized='incremental',
         unique_key='observation_id',
         incremental_strategy='delete+insert',
-        on_schema_change='sync_all_columns'
+        on_schema_change='sync_all_columns',
+        indexes=[
+            {'columns': ['observation_id'], 'unique': True},
+            {'columns': ['station_id', 'status_updated_at']},
+            {'columns': ['status_updated_at']}
+        ]
     )
 }}
 
