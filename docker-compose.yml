@@ -142,7 +142,7 @@ services:
 
   # Interface de gestion PostgreSQL (sur http://localhost:8051)
   pgadmin:
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:9.10
     container_name: mobility_pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:?PGADMIN_DEFAULT_EMAIL must be set}
