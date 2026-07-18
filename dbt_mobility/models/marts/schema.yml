@@ -97,3 +97,99 @@ models:
                 - "Vide"
                 - "Hors service"
                 - "Non installée"
+
+  - name: agg_velib_station_daily
+    description: >-
+      Agrégats quotidiens de disponibilité Vélib. Une ligne représente
+      une station et une journée d’observation.
+
+    columns:
+      - name: daily_station_id
+        description: >-
+          Clé déterministe construite à partir de station_id
+          et observation_date.
+        tests:
+          - unique
+          - not_null
+
+      - name: station_id
+        description: "Identifiant de la station Vélib."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stations')
+              field: station_id
+
+      - name: observation_date
+        description: "Date métier des observations agrégées."
+        tests:
+          - not_null
+
+      - name: observation_count
+        description: "Nombre d’observations agrégées pour la station et la journée."
+        tests:
+          - not_null
+
+      - name: average_bikes_available
+        description: "Nombre moyen de vélos disponibles."
+        tests:
+          - not_null
+
+      - name: minimum_bikes_available
+        description: "Nombre minimum de vélos disponibles."
+        tests:
+          - not_null
+
+      - name: maximum_bikes_available
+        description: "Nombre maximum de vélos disponibles."
+        tests:
+          - not_null
+
+      - name: average_docks_available
+        description: "Nombre moyen de bornes disponibles."
+        tests:
+          - not_null
+
+      - name: average_occupancy_rate_percent
+        description: "Taux moyen d’occupation de la station en pourcentage."
+        tests:
+          - not_null
+
+      - name: empty_observation_count
+        description: "Nombre d’observations pendant lesquelles la station était vide."
+        tests:
+          - not_null
+
+      - name: no_dock_observation_count
+        description: >-
+          Nombre d’observations pendant lesquelles aucune borne
+          n’était disponible.
+        tests:
+          - not_null
+
+      - name: out_of_service_observation_count
+        description: "Nombre d’observations avec une station hors service."
+        tests:
+          - not_null
+
+      - name: capacity_anomaly_count
+        description: >-
+          Nombre d’observations où les vélos disponibles dépassaient
+          la capacité déclarée.
+        tests:
+          - not_null
+
+      - name: first_observed_at
+        description: "Première observation métier de la journée."
+        tests:
+          - not_null
+
+      - name: last_observed_at
+        description: "Dernière observation métier de la journée."
+        tests:
+          - not_null
+
+      - name: last_loaded_at
+        description: "Dernier chargement technique inclus dans l’agrégat."
+        tests:
+          - not_null
