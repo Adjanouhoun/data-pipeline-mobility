@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fct_ingestion_runs
+    description: >-
+      Vue analytique des exécutions d’ingestion, destinée
+      au monitoring et aux futurs dashboards Superset.
+
+    columns:
+      - name: run_id
+        tests:
+          - unique
+          - not_null
+
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "success"
+                - "failed"
+
+      - name: started_at
+        tests:
+          - not_null
+
+      - name: finished_at
+        tests:
+          - not_null
+
+      - name: duration_seconds
+        tests:
+          - not_null
+
+      - name: is_success
+        tests:
+          - not_null
