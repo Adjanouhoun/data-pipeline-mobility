@@ -11,6 +11,7 @@
         ]
     )
 }}
+{{ prevent_unapproved_full_refresh() }}
 
 with staging_data as (
     select *
