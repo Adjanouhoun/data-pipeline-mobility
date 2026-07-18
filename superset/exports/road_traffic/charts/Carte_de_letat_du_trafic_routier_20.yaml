@@ -1,0 +1,93 @@
+slice_name: "Carte de l\u2019\xE9tat du trafic routier"
+description: null
+certified_by: null
+certification_details: null
+viz_type: deck_scatter
+params:
+  datasource: 4__table
+  viz_type: deck_scatter
+  slice_id: 20
+  spatial:
+    type: latlong
+    latCol: latitude
+    lonCol: longitude
+  row_limit: 10000
+  filter_nulls: true
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: observed_at
+  mapbox_style: mapbox://styles/mapbox/light-v9
+  autozoom: true
+  viewport:
+    bearing: 0
+    latitude: 31.222656842808707
+    longitude: 6.85236157047845
+    pitch: 0
+    zoom: 1
+  point_radius_fixed:
+    type: fix
+    value: 1000
+  point_unit: square_m
+  min_radius: 2
+  max_radius: '50'
+  multiplier: 1
+  color_picker:
+    a: 1
+    b: 135
+    g: 122
+    r: 0
+  legend_position: tr
+  legend_format: SMART_NUMBER
+  dimension: traffic_status
+  color_scheme: supersetColors
+  js_columns:
+  - arc_label
+  - arc_status
+  - traffic_status
+  - occupancy_rate
+  js_tooltip: "function (event) {\n  if (!event || !event.object) {\n    return null;\n\
+    \  }\n\n  const arc = event.object.extraProps || {};\n\n  return `\n    <div style=\"\
+    padding: 8px;\">\n      <strong>${arc.arc_label || \"Arc routier inconnu\"}</strong><br>\n\
+    \      Trafic : ${arc.traffic_status || \"Inconnu\"}<br>\n      \xC9tat de l\u2019\
+    arc : ${arc.arc_status || \"Inconnu\"}<br>\n      D\xE9bit : ${arc.vehicle_flow\
+    \ ?? \"\u2014\"} v\xE9hicules/heure<br>\n      Occupation : ${arc.occupancy_rate\
+    \ ?? \"\u2014\"} %\n    </div>\n  `;\n}"
+  time_grain_sqla: null
+  granularity: null
+  extra_form_data: {}
+  dashboards:
+  - 4
+query_context: "{\"datasource\":{\"id\":4,\"type\":\"table\"},\"force\":false,\"queries\"\
+  :[{\"filters\":[{\"col\":\"observed_at\",\"op\":\"TEMPORAL_RANGE\",\"val\":\"No\
+  \ filter\"}],\"extras\":{\"time_grain_sqla\":null,\"having\":\"\",\"where\":\"\"\
+  },\"applied_time_extras\":{},\"columns\":[],\"metrics\":[],\"annotation_layers\"\
+  :[],\"row_limit\":10000,\"series_limit\":0,\"order_desc\":true,\"url_params\":{},\"\
+  custom_params\":{},\"custom_form_data\":{}}],\"form_data\":{\"datasource\":\"4__table\"\
+  ,\"viz_type\":\"deck_scatter\",\"slice_id\":20,\"spatial\":{\"type\":\"latlong\"\
+  ,\"latCol\":\"latitude\",\"lonCol\":\"longitude\"},\"row_limit\":10000,\"filter_nulls\"\
+  :true,\"adhoc_filters\":[{\"clause\":\"WHERE\",\"comparator\":\"No filter\",\"expressionType\"\
+  :\"SIMPLE\",\"operator\":\"TEMPORAL_RANGE\",\"subject\":\"observed_at\"}],\"mapbox_style\"\
+  :\"mapbox://styles/mapbox/light-v9\",\"autozoom\":true,\"viewport\":{\"bearing\"\
+  :0,\"latitude\":31.222656842808707,\"longitude\":6.85236157047845,\"pitch\":0,\"\
+  zoom\":1},\"point_radius_fixed\":{\"type\":\"fix\",\"value\":1000},\"point_unit\"\
+  :\"square_m\",\"min_radius\":2,\"max_radius\":\"50\",\"multiplier\":1,\"color_picker\"\
+  :{\"a\":1,\"b\":135,\"g\":122,\"r\":0},\"legend_position\":\"tr\",\"legend_format\"\
+  :\"SMART_NUMBER\",\"dimension\":\"traffic_status\",\"color_scheme\":\"supersetColors\"\
+  ,\"js_columns\":[\"arc_label\",\"arc_status\",\"traffic_status\",\"occupancy_rate\"\
+  ],\"js_tooltip\":\"function (event) {\\n  if (!event || !event.object) {\\n    return\
+  \ null;\\n  }\\n\\n  const arc = event.object.extraProps || {};\\n\\n  return `\\\
+  n    <div style=\\\"padding: 8px;\\\">\\n      <strong>${arc.arc_label || \\\"Arc\
+  \ routier inconnu\\\"}</strong><br>\\n      Trafic : ${arc.traffic_status || \\\"\
+  Inconnu\\\"}<br>\\n      \xC9tat de l\u2019arc : ${arc.arc_status || \\\"Inconnu\\\
+  \"}<br>\\n      D\xE9bit : ${arc.vehicle_flow ?? \\\"\u2014\\\"} v\xE9hicules/heure<br>\\\
+  n      Occupation : ${arc.occupancy_rate ?? \\\"\u2014\\\"} %\\n    </div>\\n  `;\\\
+  n}\",\"time_grain_sqla\":null,\"granularity\":null,\"extra_form_data\":{},\"dashboards\"\
+  :[4],\"force\":false,\"result_format\":\"json\",\"result_type\":\"full\"},\"result_format\"\
+  :\"json\",\"result_type\":\"full\"}"
+cache_timeout: null
+uuid: 4b6a5f01-8dc8-42ab-9c03-4813f335346b
+version: 1.0.0
+dataset_uuid: 1d620b44-b502-4857-93cc-38c01d8baae8
