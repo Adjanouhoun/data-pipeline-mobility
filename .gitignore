@@ -22,10 +22,11 @@ dbt_mobility/logs/
 dbt_mobility/dbt_packages/
 dbt_mobility/.user.yml
 
-# Databases and runtime volumes
+# Databases, backups and runtime volumes
 pg_data/
 postgres_data/
 superset_home/
+backups/
 *.db
 *.sqlite
 
