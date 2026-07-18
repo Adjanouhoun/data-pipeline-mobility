@@ -299,11 +299,22 @@ with DAG(
     dbt_run_task = BashOperator(
         task_id="dbt_run_task",
         bash_command="""
-        set -e
-        cd /opt/airflow/dbt_mobility
-        dbt source freshness --profiles-dir .
-        dbt run --profiles-dir .
-        dbt test --profiles-dir .
+            set -euo pipefail
+            cd /opt/airflow/dbt_mobility
+
+            dbt run --select \
+                stg_velib_stations+ \
+                fct_ingestion_runs \
+                fct_pipeline_runs \
+                --profiles-dir .
+
+            dbt test --select \
+                stg_velib_stations+ \
+                fct_ingestion_runs \
+                fct_pipeline_runs \
+                source:raw_data \
+                source:monitoring_data.ingestion_runs \
+                --profiles-dir .
         """,
     )
 

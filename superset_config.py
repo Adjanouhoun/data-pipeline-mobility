@@ -15,3 +15,13 @@ MAPBOX_API_KEY = os.environ.get(
 SUPERSET_HOME_PATH = "/dashboard/list/"
 
 WTF_CSRF_ENABLED = True
+FEATURE_FLAGS = {
+    "ENABLE_JAVASCRIPT_CONTROLS": True,
+}
+from superset.config import TALISMAN_CONFIG
+
+TALISMAN_CONFIG[
+    "content_security_policy"
+][
+    "script-src"
+].append("'unsafe-eval'")
