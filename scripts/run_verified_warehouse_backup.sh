@@ -60,3 +60,8 @@ fi
 
 echo "Automated verified backup completed successfully."
 echo "Verified archive: ${backup_path}"
+
+echo "Applying verified backup retention policy."
+
+"${project_directory}/scripts/prune_verified_warehouse_backups.sh" \
+    --execute
